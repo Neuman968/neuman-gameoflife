@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import CellRow from "./CellRow";
+import classes from './CellWorld.module.css'
 
 const CellWorld = (props) => {
 
@@ -16,9 +17,9 @@ const CellWorld = (props) => {
         .map((idx) => {
             const startIdx = (idx * L);
             const endIdx = startIdx + L;
-            return <Grid item xs={1} spacing={1}>
+            return <div className={classes.CellRow}>
                 <CellRow cells={arr.slice(startIdx, endIdx)}/>
-            </Grid>
+            </div>
         });
 
     return <Grid
