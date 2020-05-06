@@ -1,5 +1,5 @@
 import React from "react";
-import TableCell from '@material-ui/core/TableCell';
+import classes from './CellRow.module.css'
 import Grid from "@material-ui/core/Grid";
 
 const deadCell = <rect width="300" height="100" style={{
