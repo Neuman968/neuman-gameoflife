@@ -15,11 +15,11 @@ const aliveCell = <rect width="300" height="100" style={{
 
 const CellRow = (props) => {
     return props.cells.map((cellVal) => {
-        return <TableCell>
+        return <td>
             <svg width="10" height="10">
                 { cellVal % 2 !== 0 ? aliveCell : deadCell}
             </svg>
-        </TableCell>
+        </td>
     })
 };
 

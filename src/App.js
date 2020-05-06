@@ -20,17 +20,17 @@ function App() {
             const rowCells = (idx * L);
             const startIdx = rowCells;
             const endIdx = startIdx + L;
-            return <TableRow>
+            return <tr>
                 <CellRow cells={arr.slice(startIdx, endIdx)}/>
-            </TableRow>
+            </tr>
         });
 
     return (
         <div className="App">
             <header className="App-header">
-                <Table size="small">
+                <table cellSpacing={0} cellPadding={0}>
                     {rows}
-                </Table>
+                </table>
             </header>
         </div>
     );
