@@ -1,5 +1,6 @@
 import React from "react";
 import TableCell from '@material-ui/core/TableCell';
+import Grid from "@material-ui/core/Grid";
 
 const deadCell = <rect width="300" height="100" style={{
     fill: "#FF3412",
@@ -15,11 +16,12 @@ const aliveCell = <rect width="300" height="100" style={{
 
 const CellRow = (props) => {
     return props.cells.map((cellVal) => {
-        return <td>
+        return <Grid item xs={2}>
+            {/*{cellVal}*/}
             <svg width="10" height="10">
                 { cellVal % 2 !== 0 ? aliveCell : deadCell}
             </svg>
-        </td>
+        </Grid>
     })
 };
 
