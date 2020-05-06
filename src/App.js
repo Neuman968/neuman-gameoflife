@@ -28,7 +28,15 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <table cellSpacing={0} cellPadding={0}>
+                <table
+                    cellSpacing={0}
+                    cellPadding={0}
+                    style={{
+                        border: '1px solid black;',
+                        borderSpacing: '0',
+                        borderCollapse: 'collapse'
+                    }}
+                >
                     {rows}
                 </table>
             </header>
