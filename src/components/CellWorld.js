@@ -24,29 +24,28 @@ const CellWorld = (props) => {
         console.log(aliveCells);
     };
 
-
-    const rows = [...Array(W).keys()]
-        .map((idx) => {
-            console.log("Logging alive cells");
-            console.log(aliveCells);
-            const startIdx = (idx * L);
-            const endIdx = startIdx + L;
-            return <div key={startIdx} className={classes.CellRow}>
-                <CellRow
-                    key={startIdx}
-                    aliveCells={aliveCells}
-                    aliveHandler={makeAlive}
-                    cells={arr.slice(startIdx, endIdx)}/>
-            </div>
-        });
-    console.log("Returning from render cycle...");
     return <Grid
         container
         spacing={0}
         alignItems="center"
         justify="center"
     >
-        {rows}
+        {
+            [...Array(W).keys()]
+                .map((idx) => {
+                    console.log("Logging alive cells");
+                    console.log(aliveCells);
+                    const startIdx = (idx * L);
+                    const endIdx = startIdx + L;
+                    return <div key={startIdx} className={classes.CellRow}>
+                        <CellRow
+                            key={startIdx}
+                            aliveCells={aliveCells}
+                            aliveHandler={makeAlive}
+                            cells={arr.slice(startIdx, endIdx)}/>
+                    </div>
+                })
+        }
     </Grid>
 };
 
