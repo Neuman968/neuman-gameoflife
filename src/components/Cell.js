@@ -2,15 +2,15 @@ import React from 'react';
 import classes from './Cell.module.css'
 
 const deadCell = <rect width="10px" height="10px" style={{
-    fill: "#FF3412",
+    fill: "rgba(75,76,73,0.96)",
     // strokeWidth: 3,
-    stroke: "#FF3412"
+    stroke: "rgba(75,76,73,0.96)"
 }}/>
 
 const aliveCell = <rect width="10px" height="10px" style={{
-    fill: "#91F5FF",
+    fill: "#ff1200",
     // strokeWidth: 3,
-    stroke: "#91F5FF"
+    stroke: "#ff6700"
 }}/>
 
 const debugConsole = (cellVal) => {
@@ -18,10 +18,21 @@ const debugConsole = (cellVal) => {
 }
 
 const Cell = (props) => {
-    return (<div className={classes.Cell} onClick={() => debugConsole(props.cellVal)}>
+    let cellState = deadCell;
+    if (props.aliveCells[props.cellVal] === 1) {
+        console.log("Alive! " + props.cellVal);
+        cellState = aliveCell
+    }
+
+    const markAliveHandler = () => {
+        props.aliveHandler(props.cellVal)
+    }
+
+    return (<div className={classes.Cell} onClick={() => markAliveHandler()}>
         <svg width="10px" height="10px">
-            deadCell
-            {/*{props.cellVal % 2 !== 0 ? aliveCell : deadCell}*/}
+            {
+                cellState
+            }
         </svg>
     </div>)
 };

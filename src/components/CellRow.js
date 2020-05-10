@@ -3,7 +3,11 @@ import Cell from './Cell'
 
 const CellRow = (props) => {
     return props.cells.map((cellVal) => {
-        return <Cell cellVal={cellVal}/>
+        return <Cell
+            key={cellVal}
+            aliveCells={props.aliveCells}
+            aliveHandler={props.aliveHandler}
+            cellVal={cellVal}/>
     })
 };
 
