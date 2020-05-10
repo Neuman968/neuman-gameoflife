@@ -38,4 +38,4 @@ const Cell = (props) => {
     </div>)
 };
 
-export default Cell;
+export default React.memo(Cell);

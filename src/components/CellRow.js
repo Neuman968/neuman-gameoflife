@@ -16,4 +16,4 @@ const CellRow = (props) => {
 };
 
 
-export default CellRow;
+export default React.memo(CellRow);
