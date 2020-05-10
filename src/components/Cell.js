@@ -13,10 +13,6 @@ const aliveCell = <rect width="10px" height="10px" style={{
     stroke: "#ff6700"
 }}/>
 
-const debugConsole = (cellVal) => {
-    console.log("index is " + cellVal)
-}
-
 const Cell = (props) => {
     let cellState = deadCell;
     if (props.aliveCells[props.cellVal] === 1) {
