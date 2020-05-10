@@ -2,3 +2,9 @@
     border: 1px solid mediumpurple;
     font-size: 0;
 }
+
+.CellSelected {
+    border: 1px solid orangered;
+    font-size: 0;
+}
+
