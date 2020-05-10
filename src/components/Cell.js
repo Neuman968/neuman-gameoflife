@@ -20,15 +20,13 @@ const debugConsole = (cellVal) => {
 const Cell = (props) => {
     let cellState = deadCell;
     if (props.aliveCells[props.cellVal] === 1) {
-        console.log("Alive! " + props.cellVal);
         cellState = aliveCell
     }
 
     const markAliveHandler = () => {
         props.aliveHandler(props.cellVal)
     }
-    console.log("Rendering cell " + props.cellVal);
-    console.log(props.aliveCells);
+
     return (<div className={classes.Cell} onClick={() => markAliveHandler()}>
         <svg width="10px" height="10px">
             {

@@ -7,7 +7,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <CellWorld length={5} width={10}/>
+                <CellWorld length={60} width={100}/>
             </header>
         </div>
     );

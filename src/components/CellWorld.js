@@ -17,11 +17,9 @@ const CellWorld = (props) => {
 
     const makeAlive = (idx) => {
         // "1" should be truthy.
-        let cop = aliveCells
-        console.log("Marking " + idx + " as live");
+        let cop = { ...aliveCells }
         cop[idx] = 1;
         setAliveCells((_) => cop);
-        console.log(aliveCells);
     };
 
     return <Grid
@@ -33,8 +31,6 @@ const CellWorld = (props) => {
         {
             [...Array(W).keys()]
                 .map((idx) => {
-                    console.log("Logging alive cells");
-                    console.log(aliveCells);
                     const startIdx = (idx * L);
                     const endIdx = startIdx + L;
                     return <div key={startIdx} className={classes.CellRow}>
