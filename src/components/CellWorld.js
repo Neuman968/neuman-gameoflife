@@ -4,6 +4,8 @@ import Cell from "./Cell";
 
 const getCellKey = (row, column) => row + '-' + column;
 
+const rowColFromCelKey = (key) => key.split('-').map((val) => parseInt(val));
+
 const CellWorld = (props) => {
 
     const L = props.length;
@@ -24,6 +26,12 @@ const CellWorld = (props) => {
         cop.selectedIdx = cellKey;
         setState((_) => cop);
     };
+
+    const updateSelected = (row, column) => {
+        let cop = {...state};
+        cop.selectedIdx = getCellKey(row, column);
+        setState((_) => cop)
+    }
 
     return <Grid
         container
