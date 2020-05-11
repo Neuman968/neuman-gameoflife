@@ -5,7 +5,7 @@ const CellRow = (props) => {
     return <Fragment>
         {props.cells.map((cellVal) => {
             return <Cell
-                selected={cellVal == props.selectedIdx}
+                selected={cellVal === props.selectedIdx}
                 key={cellVal}
                 aliveCells={props.aliveCells}
                 aliveHandler={props.aliveHandler}
