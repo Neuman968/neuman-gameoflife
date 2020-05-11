@@ -8,7 +8,10 @@ const CellWorld = (props) => {
     const L = props.length;
     const W = props.width;
 
-    const [aliveCells, setAliveCells] = useState({});
+    const [state, setState] = useState({
+        aliveCells: {},
+        selectedIdx: 0
+    });
 
     const arr = [];
     for (let i = 0; i < L * W; i++) {
@@ -17,9 +20,10 @@ const CellWorld = (props) => {
 
     const makeAlive = (idx) => {
         // "1" should be truthy.
-        let cop = { ...aliveCells }
-        cop[idx] = 1;
-        setAliveCells((_) => cop);
+        let cop = { ...state };
+        cop.aliveCells[idx] = 1;
+        cop.selectedIdx = idx;
+        setState((_) => cop);
     };
 
     return <Grid
@@ -36,7 +40,7 @@ const CellWorld = (props) => {
                     return <div key={startIdx} className={classes.CellRow}>
                         <CellRow
                             key={startIdx}
-                            aliveCells={aliveCells}
+                            aliveCells={state.aliveCells}
                             aliveHandler={makeAlive}
                             cells={arr.slice(startIdx, endIdx)}/>
                     </div>
