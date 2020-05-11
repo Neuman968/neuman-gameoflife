@@ -54,15 +54,4 @@ const CellWorld = (props) => {
     </Grid>
 };
 
-// const startIdx = (idx * L);
-// const endIdx = startIdx + L;
-// return <div key={startIdx} className={classes.CellRow}>
-
-// {/*/!*<CellRow*!/*/}
-// {/*/!*    key={startIdx}*!/*/}
-// {/*/!*    aliveCells={state.aliveCells}*!/*/}
-// {/*/!*    aliveHandler={makeAlive}*!/*/}
-// {/*/!*    cells={arr.slice(startIdx, endIdx)}/>*!/*/}
-// {/*    // </div>*/}
-
 export default React.memo(CellWorld);
