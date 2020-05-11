@@ -14,11 +14,6 @@ const CellWorld = (props) => {
         _cachedLengthKeys: [...Array(L).keys()],
     });
 
-    const arr = [];
-    for (let i = 0; i < L * W; i++) {
-        arr.push(i);
-    }
-
     const makeAlive = (idx) => {
         // "1" should be truthy.
         let cop = {...state};
