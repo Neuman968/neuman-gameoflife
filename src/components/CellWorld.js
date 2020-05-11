@@ -10,7 +10,8 @@ const CellWorld = (props) => {
 
     const [state, setState] = useState({
         aliveCells: {},
-        selectedIdx: 0
+        selectedIdx: 0,
+        _cachedKeys: [...Array(W).keys()]
     });
 
     const arr = [];
@@ -33,8 +34,7 @@ const CellWorld = (props) => {
         justify="center"
     >
         {
-            [...Array(W).keys()]
-                .map((idx) => {
+                state._cachedKeys.map((idx) => {
                     const startIdx = (idx * L);
                     const endIdx = startIdx + L;
                     return <div key={startIdx} className={classes.CellRow}>
