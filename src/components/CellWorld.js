@@ -21,27 +21,35 @@ const CellWorld = (props) => {
     const makeAlive = (idx) => {
         // "1" should be truthy.
         let cop = {...state};
-        cop.aliveCells[idx] = 1;
+        cop.aliveCells[idx] = idx;
         // cop.selectedIdx = idx;
         setState((_) => cop);
     };
 
-    const handleKeyDownSelection = (e) => {
-        console.log(e);
-        if (e.key === "ArrowDown") {
+    const setSelected = (idx) => {
+        let cop = {...state};
+        cop.selectedIdx = idx;
+        if (cop.selectedIdx < 0 || cop.selectedIdx >= arr.length) {
+            cop.selectedIdx = state.selectedIdx;
+        }
+        setState((_) => cop);
+    }
 
+    const handleKeyDownSelection = (e) => {
+        if (e.key === "ArrowDown") {
+            setSelected(state.selectedIdx + 1);
         }
 
         if (e.key === "ArrowUp") {
-
+            setSelected(state.selectedIdx - 1);
         }
 
         if (e.key === "ArrowLeft") {
-
+            setSelected(state.selectedIdx - L);
         }
 
         if (e.key === "ArrowRight") {
-
+            setSelected(state.selectedIdx + L);
         }
     }
 
@@ -73,4 +81,4 @@ const CellWorld = (props) => {
     </Grid>
 };
 
-export default CellWorld;
+export default React.memo(CellWorld);
