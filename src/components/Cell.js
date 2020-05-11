@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from './Cell.module.css'
 
 const deadCell = <rect width="10px" height="10px" style={{
@@ -14,12 +14,17 @@ const aliveCell = <rect width="10px" height="10px" style={{
 }}/>
 
 const Cell = (props) => {
-    let cellState = deadCell;
-    if (props.aliveCells[props.cellVal] === 1) {
-        cellState = aliveCell
-    }
+
+    const [state, setState] = useState({
+        alive: props.aliveCells[props.cellVal] ? 1 : 0,
+    })
+
+    let cellState = state.alive === 1 ? aliveCell : deadCell;
 
     const markAliveHandler = () => {
+        let cop = { ...state }
+        cop.alive = 1;
+        setState((_) => cop)
         props.aliveHandler(props.cellVal)
     }
 
@@ -37,4 +42,4 @@ const Cell = (props) => {
     </div>)
 };
 
-export default React.memo(Cell);
+export default Cell;
