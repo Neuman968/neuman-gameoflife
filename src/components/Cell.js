@@ -23,9 +23,9 @@ const Cell = (props) => {
 
     const markAliveHandler = () => {
         let cop = { ...state }
-        cop.alive = true;
+        cop.alive = state.alive === 1 ? 0 : 1;
         setState((_) => cop)
-        props.aliveHandler(props.cellVal)
+        props.aliveHandler(props.row, props.column)
     }
 
     let classesList = [classes.Cell];

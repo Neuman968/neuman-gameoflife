@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import Cell from "./Cell";
 
+const getCellKey = (row, column) => row + '-' + column;
+
 const CellWorld = (props) => {
 
     const L = props.length;
@@ -9,16 +11,17 @@ const CellWorld = (props) => {
 
     const [state, setState] = useState({
         aliveCells: {},
-        selectedIdx: 0,
+        selectedIdx: getCellKey(0, 0),
         _cachedWidthKeys: [...Array(W).keys()],
         _cachedLengthKeys: [...Array(L).keys()],
     });
 
-    const makeAlive = (idx) => {
+    const makeAlive = (row, column) => {
         // "1" should be truthy.
         let cop = {...state};
-        cop.aliveCells[idx] = 1;
-        cop.selectedIdx = idx;
+        const cellKey = getCellKey(row, column);
+        cop.aliveCells[cellKey] = 1;
+        cop.selectedIdx = cellKey;
         setState((_) => cop);
     };
 
@@ -29,17 +32,19 @@ const CellWorld = (props) => {
         justify="center"
     >
         {
-            state._cachedWidthKeys.map((idx) => {
+            state._cachedWidthKeys.map((row) => {
 
-                return <div key={idx}>{
-                    state._cachedLengthKeys.map((lidx) => {
-                        const cellVal = (idx * L) + lidx;
+                return <div key={row}>{
+                    state._cachedLengthKeys.map((column) => {
+                        const cellKey = getCellKey(row, column);
                         return <Cell
-                            selected={cellVal === state.selectedIdx}
-                            isAlive={!!state.aliveCells[cellVal]}
-                            key={cellVal}
+                            selected={cellKey === state.selectedIdx}
+                            isAlive={!!state.aliveCells[cellKey]}
+                            key={cellKey}
                             aliveHandler={makeAlive}
-                            cellVal={cellVal}
+                            cellVal={cellKey}
+                            row={row}
+                            column={column}
                         />
                     })
                 }
