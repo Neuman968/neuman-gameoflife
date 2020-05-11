@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
-import CellRow from "./CellRow";
-import classes from './CellWorld.module.css'
+import Cell from "./Cell";
 
 const CellWorld = (props) => {
 
@@ -11,7 +10,8 @@ const CellWorld = (props) => {
     const [state, setState] = useState({
         aliveCells: {},
         selectedIdx: 0,
-        _cachedKeys: [...Array(W).keys()]
+        _cachedWidthKeys: [...Array(W).keys()],
+        _cachedLengthKeys: [...Array(L).keys()],
     });
 
     const arr = [];
@@ -34,19 +34,35 @@ const CellWorld = (props) => {
         justify="center"
     >
         {
-            state._cachedKeys.map((idx) => {
-                const startIdx = (idx * L);
-                const endIdx = startIdx + L;
-                return <div key={startIdx} className={classes.CellRow}>
-                    <CellRow
-                        key={startIdx}
-                        aliveCells={state.aliveCells}
-                        aliveHandler={makeAlive}
-                        cells={arr.slice(startIdx, endIdx)}/>
+            state._cachedWidthKeys.map((idx) => {
+
+                return <div key={idx}>{
+                    state._cachedLengthKeys.map((lidx) => {
+                        const cellVal = (idx * L) + lidx;
+                        return <Cell
+                            selected={cellVal === state.selectedIdx}
+                            key={cellVal}
+                            aliveCells={state.aliveCells}
+                            aliveHandler={makeAlive}
+                            cellVal={cellVal}
+                        />
+                    })
+                }
                 </div>
             })
         }
     </Grid>
 };
+
+// const startIdx = (idx * L);
+// const endIdx = startIdx + L;
+// return <div key={startIdx} className={classes.CellRow}>
+
+// {/*/!*<CellRow*!/*/}
+// {/*/!*    key={startIdx}*!/*/}
+// {/*/!*    aliveCells={state.aliveCells}*!/*/}
+// {/*/!*    aliveHandler={makeAlive}*!/*/}
+// {/*/!*    cells={arr.slice(startIdx, endIdx)}/>*!/*/}
+// {/*    // </div>*/}
 
 export default CellWorld;
