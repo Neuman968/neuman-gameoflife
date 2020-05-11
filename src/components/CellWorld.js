@@ -4,7 +4,8 @@ import Cell from "./Cell";
 
 const getCellKey = (row, column) => row + '-' + column;
 
-const rowColFromCelKey = (key) => key.split('-').map((val) => parseInt(val));
+const rowColFromCelKey = (key) => key.split('-')
+    .map((val) => parseInt(val));
 
 const CellWorld = (props) => {
 
