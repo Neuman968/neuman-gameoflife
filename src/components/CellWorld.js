@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import CellRow from "./CellRow";
 import classes from './CellWorld.module.css'
@@ -8,10 +8,7 @@ const CellWorld = (props) => {
     const L = props.length;
     const W = props.width;
 
-    const [state, setState] = useState({
-        selectedIdx: 0,
-        aliveCells: {},
-    });
+    const [aliveCells, setAliveCells] = useState({});
 
     const arr = [];
     for (let i = 0; i < L * W; i++) {
@@ -20,42 +17,10 @@ const CellWorld = (props) => {
 
     const makeAlive = (idx) => {
         // "1" should be truthy.
-        let cop = {...state};
-        cop.aliveCells[idx] = idx;
-        cop.selectedIdx = idx;
-        setState((_) => cop);
-        console.log("Alive states are...")
-        console.log(cop.aliveCells);
+        let cop = { ...aliveCells }
+        cop[idx] = 1;
+        setAliveCells((_) => cop);
     };
-
-    // const updateSelected = (idx) => {
-    //     let cop = {...state};
-    //     cop.selectedIdx = idx;
-    //     setState((_) => cop);
-    // }
-
-    const handleKeyDownSelection = (e) => {
-        // console.log(e);
-        if (e.key === "ArrowDown") {
-            // updateSelected(state.selectedIdx + 1);
-        }
-
-        if (e.key === "ArrowUp") {
-
-        }
-
-        if (e.key === "ArrowLeft") {
-
-        }
-
-        if (e.key === "ArrowRight") {
-
-        }
-    }
-
-    // useEffect(() => {
-    //     window.addEventListener("keydown", handleKeyDownSelection);
-    // })
 
     return <Grid
         container
@@ -70,9 +35,8 @@ const CellWorld = (props) => {
                     const endIdx = startIdx + L;
                     return <div key={startIdx} className={classes.CellRow}>
                         <CellRow
-                            selectedIdx={state.selectedIdx}
                             key={startIdx}
-                            aliveCells={state.aliveCells}
+                            aliveCells={aliveCells}
                             aliveHandler={makeAlive}
                             cells={arr.slice(startIdx, endIdx)}/>
                     </div>
