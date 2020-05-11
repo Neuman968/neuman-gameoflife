@@ -24,12 +24,20 @@ const CellWorld = (props) => {
         cop.aliveCells[idx] = idx;
         cop.selectedIdx = idx;
         setState((_) => cop);
+        console.log("Alive states are...")
+        console.log(cop.aliveCells);
     };
 
-    const handleKeyDownSelection = (e) => {
-        console.log(e);
-        if (e.key === "ArrowDown") {
+    // const updateSelected = (idx) => {
+    //     let cop = {...state};
+    //     cop.selectedIdx = idx;
+    //     setState((_) => cop);
+    // }
 
+    const handleKeyDownSelection = (e) => {
+        // console.log(e);
+        if (e.key === "ArrowDown") {
+            // updateSelected(state.selectedIdx + 1);
         }
 
         if (e.key === "ArrowUp") {
@@ -45,9 +53,9 @@ const CellWorld = (props) => {
         }
     }
 
-    useEffect(() => {
-        window.addEventListener("keydown", handleKeyDownSelection);
-    })
+    // useEffect(() => {
+    //     window.addEventListener("keydown", handleKeyDownSelection);
+    // })
 
     return <Grid
         container

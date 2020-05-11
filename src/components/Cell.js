@@ -25,7 +25,6 @@ const Cell = (props) => {
 
     let classesList = [classes.Cell];
     if (props.selected) {
-        console.log("Selected!");
         classesList = [classes.CellSelected]
     }
 
