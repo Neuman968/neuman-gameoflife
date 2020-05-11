@@ -41,8 +41,8 @@ const CellWorld = (props) => {
                         const cellVal = (idx * L) + lidx;
                         return <Cell
                             selected={cellVal === state.selectedIdx}
+                            isAlive={!!state.aliveCells[cellVal]}
                             key={cellVal}
-                            aliveCells={state.aliveCells}
                             aliveHandler={makeAlive}
                             cellVal={cellVal}
                         />
@@ -65,4 +65,4 @@ const CellWorld = (props) => {
 // {/*/!*    cells={arr.slice(startIdx, endIdx)}/>*!/*/}
 // {/*    // </div>*/}
 
-export default CellWorld;
+export default React.memo(CellWorld);
