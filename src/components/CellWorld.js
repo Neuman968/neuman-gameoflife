@@ -21,7 +21,7 @@ const CellWorld = (props) => {
 
     const makeAlive = (idx) => {
         // "1" should be truthy.
-        let cop = { ...state };
+        let cop = {...state};
         cop.aliveCells[idx] = 1;
         cop.selectedIdx = idx;
         setState((_) => cop);
@@ -34,17 +34,17 @@ const CellWorld = (props) => {
         justify="center"
     >
         {
-                state._cachedKeys.map((idx) => {
-                    const startIdx = (idx * L);
-                    const endIdx = startIdx + L;
-                    return <div key={startIdx} className={classes.CellRow}>
-                        <CellRow
-                            key={startIdx}
-                            aliveCells={state.aliveCells}
-                            aliveHandler={makeAlive}
-                            cells={arr.slice(startIdx, endIdx)}/>
-                    </div>
-                })
+            state._cachedKeys.map((idx) => {
+                const startIdx = (idx * L);
+                const endIdx = startIdx + L;
+                return <div key={startIdx} className={classes.CellRow}>
+                    <CellRow
+                        key={startIdx}
+                        aliveCells={state.aliveCells}
+                        aliveHandler={makeAlive}
+                        cells={arr.slice(startIdx, endIdx)}/>
+                </div>
+            })
         }
     </Grid>
 };
