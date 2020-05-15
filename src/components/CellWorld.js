@@ -9,16 +9,11 @@ const rowColFromCelKey = (key) => key.split('-')
 
 const CellWorld = (props) => {
 
-    const L = props.length;
-    const W = props.width;
-
     const [state, setState] = useState({
         cellState: {
             selectedIdx: getCellKey(0, 0),
             aliveCells: {}
         },
-        _cachedWidthKeys: [...Array(W).keys()],
-        _cachedLengthKeys: [...Array(L).keys()],
     });
 
     const makeAlive = (row, column) => {
@@ -71,10 +66,10 @@ const CellWorld = (props) => {
         justify="center"
     >
         {
-            state._cachedWidthKeys.map((row) => {
+            props.widthKeys.map((row) => {
 
                 return <div key={row}>{
-                    state._cachedLengthKeys.map((column) => {
+                    props.lengthKeys.map((column) => {
                         const cellKey = getCellKey(row, column);
                         return <Cell
                             selected={cellKey === state.cellState.selectedIdx}
