@@ -38,10 +38,22 @@ const CellWorld = (props) => {
 
 
     const handleKeyEvent = (e) => {
-        console.log("Go event ")
-        console.log(e);
-        console.log("current state is")
-        console.log(state)
+        let [row, column] = rowColFromCelKey(state.cellState.selectedIdx)
+
+        switch (e.key) {
+            case 'ArrowDown':
+                updateSelected(row, column + 1);
+                break;
+            case 'ArrowUp':
+                updateSelected(row, column - 1)
+                break;
+            case 'ArrowRight':
+                updateSelected(row + 1, column)
+                break;
+            case 'ArrowLeft':
+                updateSelected(row - 1, column)
+                break;
+        }
     }
 
     useEffect(() => {
