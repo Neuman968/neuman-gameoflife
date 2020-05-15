@@ -13,8 +13,10 @@ const CellWorld = (props) => {
     const W = props.width;
 
     const [state, setState] = useState({
-        aliveCells: {},
-        selectedIdx: getCellKey(0, 0),
+        cellState: {
+            selectedIdx: getCellKey(0, 0),
+            aliveCells: {}
+        },
         _cachedWidthKeys: [...Array(W).keys()],
         _cachedLengthKeys: [...Array(L).keys()],
     });
@@ -23,14 +25,14 @@ const CellWorld = (props) => {
         // "1" should be truthy.
         let cop = {...state};
         const cellKey = getCellKey(row, column);
-        cop.aliveCells[cellKey] = 1;
-        cop.selectedIdx = cellKey;
+        cop.cellState.aliveCells[cellKey] = 1;
+        cop.cellState.selectedIdx = cellKey;
         setState((_) => cop);
     };
 
     const updateSelected = (row, column) => {
         let cop = {...state};
-        cop.selectedIdx = getCellKey(row, column);
+        cop.cellState.selectedIdx = getCellKey(row, column);
         setState((_) => cop)
     }
 
@@ -63,8 +65,8 @@ const CellWorld = (props) => {
                     state._cachedLengthKeys.map((column) => {
                         const cellKey = getCellKey(row, column);
                         return <Cell
-                            selected={cellKey === state.selectedIdx}
-                            isAlive={!!state.aliveCells[cellKey]}
+                            selected={cellKey === state.cellState.selectedIdx}
+                            isAlive={!!state.cellState.aliveCells[cellKey]}
                             key={cellKey}
                             aliveHandler={makeAlive}
                             cellVal={cellKey}
