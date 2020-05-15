@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import Cell from "./Cell";
 
@@ -33,6 +33,22 @@ const CellWorld = (props) => {
         cop.selectedIdx = getCellKey(row, column);
         setState((_) => cop)
     }
+
+
+    const handleKeyEvent = (e) => {
+        console.log("Go event ")
+        console.log(e);
+        console.log("current state is")
+        console.log(state)
+    }
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyEvent);
+        return () => {
+            window.removeEventListener('keydown', handleKeyEvent);
+        }
+    }, []);
+
 
     return <Grid
         container
