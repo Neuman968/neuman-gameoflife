@@ -17,7 +17,7 @@ const Cell = (props) => {
 
     let cellState = props.isAlive ? aliveCell : deadCell;
 
-    const markAliveHandler = () => {
+    const aliveHandler = () => {
         props.aliveHandler(props.row, props.column)
     }
 
@@ -26,7 +26,7 @@ const Cell = (props) => {
         classesList = [classes.CellSelected]
     }
 
-    return (<div className={classesList.join(' ')} onClick={() => markAliveHandler()}>
+    return (<div className={classesList.join(' ')} onClick={() => aliveHandler()}>
         <svg width="10px" height="10px">
             {
                 cellState

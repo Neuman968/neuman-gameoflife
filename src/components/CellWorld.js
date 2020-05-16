@@ -16,11 +16,15 @@ const CellWorld = (props) => {
         },
     });
 
-    const makeAlive = (row, column) => {
+    const updateAlive = (row, column) => {
         // "1" should be truthy.
         let cop = {...state};
         const cellKey = getCellKey(row, column);
-        cop.cellState.aliveCells[cellKey] = 1;
+        if (state.cellState.aliveCells[cellKey]) {
+            delete cop.cellState.aliveCells[cellKey];
+        } else {
+            cop.cellState.aliveCells[cellKey] = 1;
+        }
         cop.cellState.selectedIdx = cellKey;
         setState((_) => cop);
     };
@@ -48,7 +52,7 @@ const CellWorld = (props) => {
                 updateSelected(row - 1, column)
                 break;
             case 'Enter':
-                makeAlive(row, column);
+                updateAlive(row, column);
                 break;
         }
     }
@@ -77,7 +81,7 @@ const CellWorld = (props) => {
                             selected={cellKey === state.cellState.selectedIdx}
                             isAlive={!!state.cellState.aliveCells[cellKey]}
                             key={cellKey}
-                            aliveHandler={makeAlive}
+                            aliveHandler={updateAlive}
                             cellVal={cellKey}
                             row={row}
                             column={column}
