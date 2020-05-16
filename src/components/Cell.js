@@ -15,16 +15,9 @@ const aliveCell = <rect width="10px" height="10px" style={{
 
 const Cell = (props) => {
 
-    const [state, setState] = useState({
-        alive: props.isAlive,
-    })
-
-    let cellState = state.alive === 1 ? aliveCell : deadCell;
+    let cellState = props.isAlive ? aliveCell : deadCell;
 
     const markAliveHandler = () => {
-        let cop = { ...state }
-        cop.alive = state.alive === 1 ? 0 : 1;
-        setState((_) => cop)
         props.aliveHandler(props.row, props.column)
     }
 
