@@ -34,7 +34,6 @@ const CellWorld = (props) => {
 
     const handleKeyEvent = (e) => {
         let [row, column] = rowColFromCelKey(state.cellState.selectedIdx)
-        console.log(state)
         switch (e.key) {
             case 'ArrowDown':
                 updateSelected(row, column + 1);
@@ -49,7 +48,6 @@ const CellWorld = (props) => {
                 updateSelected(row - 1, column)
                 break;
             case 'Enter':
-                console.log("Making Alive " + row + " " + column)
                 makeAlive(row, column);
                 break;
         }
