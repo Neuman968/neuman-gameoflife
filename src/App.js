@@ -4,8 +4,8 @@ import CellWorld from "./components/CellWorld";
 
 function App() {
 
-    const _cachedWidthKeys = [...Array(2).keys()]
-    const _cachedLengthKeys = [...Array(1).keys()]
+    const _cachedWidthKeys = [...Array(60).keys()]
+    const _cachedLengthKeys = [...Array(100).keys()]
 
     return (
         <div className="App">
