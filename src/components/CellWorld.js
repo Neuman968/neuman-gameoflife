@@ -40,16 +40,16 @@ const CellWorld = (props) => {
         let [row, column] = rowColFromCelKey(state.cellState.selectedIdx)
         switch (e.key) {
             case 'ArrowDown':
-                updateSelected(row, column + 1);
-                break;
-            case 'ArrowUp':
-                updateSelected(row, column - 1)
-                break;
-            case 'ArrowRight':
                 updateSelected(row + 1, column)
                 break;
-            case 'ArrowLeft':
+            case 'ArrowUp':
                 updateSelected(row - 1, column)
+                break;
+            case 'ArrowRight':
+                updateSelected(row, column + 1)
+                break;
+            case 'ArrowLeft':
+                updateSelected(row, column - 1)
                 break;
             case  " ":
             case 'Enter':
@@ -99,24 +99,6 @@ const CellWorld = (props) => {
                     x = 0;
                     return cellRow
                 })
-                // props.widthKeys.map((row) => {
-                //
-                //     return <div key={row}>{
-                //         props.lengthKeys.map((column) => {
-                //             const cellKey = getCellKey(row, column);
-                //             return <Cell
-                //                 selected={cellKey === state.cellState.selectedIdx}
-                //                 isAlive={!!state.cellState.aliveCells[cellKey]}
-                //                 key={cellKey}
-                //                 aliveHandler={updateAlive}
-                //                 cellVal={cellKey}
-                //                 row={row}
-                //                 column={column}
-                //             />
-                //         })
-                //     }
-                //     </div>
-                // })
             }
         </svg>
     </Grid>
