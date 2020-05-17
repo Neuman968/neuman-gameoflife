@@ -51,6 +51,7 @@ const CellWorld = (props) => {
             case 'ArrowLeft':
                 updateSelected(row - 1, column)
                 break;
+            case  " ":
             case 'Enter':
                 updateAlive(row, column);
                 break;
