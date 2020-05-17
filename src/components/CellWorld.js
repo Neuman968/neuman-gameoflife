@@ -17,7 +17,6 @@ const CellWorld = (props) => {
     });
 
     const updateAlive = (row, column) => {
-        // "1" should be truthy.
         let cop = {...state};
         const cellKey = getCellKey(row, column);
         if (state.cellState.aliveCells[cellKey]) {
