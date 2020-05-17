@@ -65,6 +65,8 @@ const CellWorld = (props) => {
         }
     }, []);
 
+    let x = 0;
+    let y = 0;
 
     return <Grid
         container
@@ -72,13 +74,12 @@ const CellWorld = (props) => {
         alignItems="center"
         justify="center"
     >
-        {
-            props.widthKeys.map((row) => {
-
-                return <div key={row}>{
-                    props.lengthKeys.map((column) => {
+        <svg>
+            {
+                props.widthKeys.map((row) => {
+                    let cellRow = props.lengthKeys.map((column) => {
                         const cellKey = getCellKey(row, column);
-                        return <Cell
+                        let cell = <Cell
                             selected={cellKey === state.cellState.selectedIdx}
                             isAlive={!!state.cellState.aliveCells[cellKey]}
                             key={cellKey}
@@ -86,12 +87,38 @@ const CellWorld = (props) => {
                             cellVal={cellKey}
                             row={row}
                             column={column}
+                            x={x}
+                            y={y}
+                            height="8px"
+                            width="8px"
                         />
+                        x += 10;
+                        return cell;
                     })
-                }
-                </div>
-            })
-        }
+                    y += 10
+                    x = 0;
+                    return cellRow
+                })
+                // props.widthKeys.map((row) => {
+                //
+                //     return <div key={row}>{
+                //         props.lengthKeys.map((column) => {
+                //             const cellKey = getCellKey(row, column);
+                //             return <Cell
+                //                 selected={cellKey === state.cellState.selectedIdx}
+                //                 isAlive={!!state.cellState.aliveCells[cellKey]}
+                //                 key={cellKey}
+                //                 aliveHandler={updateAlive}
+                //                 cellVal={cellKey}
+                //                 row={row}
+                //                 column={column}
+                //             />
+                //         })
+                //     }
+                //     </div>
+                // })
+            }
+        </svg>
     </Grid>
 };
 
