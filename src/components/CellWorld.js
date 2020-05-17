@@ -73,28 +73,29 @@ const CellWorld = (props) => {
         alignItems="center"
         justify="center"
     >
-        <svg>
+        <svg
+            width={(props.squareSize + 2) * props.widthKeys.length}
+            height={(props.squareSize + 2) * props.lengthKeys.length}>
             {
                 props.widthKeys.map((row) => {
                     let cellRow = props.lengthKeys.map((column) => {
                         const cellKey = getCellKey(row, column);
                         let cell = <Cell
-                            selected={cellKey === state.cellState.selectedIdx}
+                            isSelected={cellKey === state.cellState.selectedIdx}
                             isAlive={!!state.cellState.aliveCells[cellKey]}
                             key={cellKey}
                             aliveHandler={updateAlive}
-                            cellVal={cellKey}
                             row={row}
                             column={column}
                             x={x}
                             y={y}
-                            height="8px"
-                            width="8px"
+                            height={props.squareSize}
+                            width={props.squareSize}
                         />
-                        x += 10;
+                        x += props.squareSize + 2;
                         return cell;
                     })
-                    y += 10
+                    y += props.squareSize + 2;
                     x = 0;
                     return cellRow
                 })

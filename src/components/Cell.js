@@ -1,27 +1,19 @@
-import React, {useState} from 'react';
-import classes from './Cell.module.css'
+import React from 'react';
 
 const DeadCell = (props) => (<rect {...props} style={{
     fill: "rgba(75,76,73,0.96)",
-    // strokeWidth: 3,
-    stroke: props.selected ? "#3DF5FF" : "rgba(75,76,73,0.96)"
+    stroke: props.isSelected ? "#3DF5FF" : "rgba(75,76,73,0.96)"
 }}/>)
 
 const AliveCell = (props) => (<rect {...props} style={{
     fill: "#ff1200",
-    // strokeWidth: 3,
-    stroke: props.selected ? "#3DF5FF" : "#ff1200"
+    stroke: props.isSelected ? "#3DF5FF" : "#ff1200"
 }}/>)
 
 const Cell = (props) => {
 
     const aliveHandler = () => {
         props.aliveHandler(props.row, props.column)
-    }
-
-    let classesList = [classes.Cell];
-    if (props.selected) {
-        classesList = [classes.CellSelected]
     }
 
     if (props.isAlive) {
