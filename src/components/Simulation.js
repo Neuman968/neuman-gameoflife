@@ -7,9 +7,8 @@ export const getCellKey = (row, column) => row + '-' + column;
 export const rowColFromCelKey = (key) => key.split('-')
     .map((val) => parseInt(val));
 
-
-const _cachedWidthKeys = [...Array(60).keys()]
-const _cachedLengthKeys = [...Array(100).keys()]
+const _cachedLengthKeys = [...Array(10).keys()]
+const _cachedWidthKeys = [...Array(3).keys()]
 
 const squareSize = 10;
 
@@ -42,6 +41,12 @@ const Simulation = () => {
         setCellState((_) => copy)
     }
 
+    const updateRunning = () => {
+        let copyState = {...simulationState}
+        copyState.running = !copyState.running
+        setSimulationState((_) => copyState)
+    }
+
     return (<>
         <CellWorld
             updateAlive={cellAliveHandler}
@@ -56,6 +61,7 @@ const Simulation = () => {
             updateSelected={updateSelected}
             updateAlive={cellAliveHandler}
             cellState={cellState}
+            updateRunning={updateRunning}
         />
     </>);
 }

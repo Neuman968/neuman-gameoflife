@@ -1,5 +1,7 @@
 import React, {useEffect} from "react";
 import {rowColFromCelKey} from "./Simulation";
+import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
 
 const WorldControls = (props) => {
 
@@ -33,7 +35,13 @@ const WorldControls = (props) => {
         }
     }, [props.cellState]);
 
-    return (<></>)
+    return (<Card>
+        <Button
+            onClick={props.updateRunning}
+            color="primary">
+            {props.running ? <>Stop</> : <>Start</>}
+        </Button>
+    </Card>)
 }
 
 export default React.memo(WorldControls);
