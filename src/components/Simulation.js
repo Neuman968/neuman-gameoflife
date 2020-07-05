@@ -14,33 +14,33 @@ const _cachedLengthKeys = [...Array(100).keys()]
 const squareSize = 10;
 
 const Simulation = () => {
-    const [state, setState] = useState({
+    const [cellState, setCellState] = useState({
         selectedIdx: getCellKey(0, 0),
         aliveCells: {}
     });
 
     const cellAliveHandler = (row, column) => {
-        let copy = {...state}
+        let copy = {...cellState}
         const cellKey = getCellKey(row, column)
-        if (state.aliveCells[cellKey]) {
+        if (cellState.aliveCells[cellKey]) {
             delete copy.aliveCells[cellKey]
         } else {
             copy.aliveCells[cellKey] = 1;
         }
         copy.selectedIdx = cellKey;
-        setState((_) => copy);
+        setCellState((_) => copy);
     }
 
     const updateSelected = (row, column) => {
-        let copy = {...state}
+        let copy = {...cellState}
         copy.selectedIdx = getCellKey(row, column)
-        setState((_) => copy)
+        setCellState((_) => copy)
     }
 
     return (<>
         <CellWorld
             updateAlive={cellAliveHandler}
-            cellState={state}
+            cellState={cellState}
             widthKeys={_cachedWidthKeys}
             lengthKeys={_cachedLengthKeys}
             squareSize={squareSize}
@@ -48,7 +48,7 @@ const Simulation = () => {
         <WorldControls
             updateSelected={updateSelected}
             updateAlive={cellAliveHandler}
-            cellState={state}
+            cellState={cellState}
         />
     </>);
 }
