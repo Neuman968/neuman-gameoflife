@@ -11,7 +11,7 @@ export const rowColFromCelKey = (key) => key.split('-')
 const _cachedWidthKeys = [...Array(60).keys()]
 const _cachedLengthKeys = [...Array(100).keys()]
 
-const squareSize = 5;
+const squareSize = 10;
 
 const Simulation = () => {
     const [state, setState] = useState({
