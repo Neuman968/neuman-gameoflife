@@ -3,7 +3,7 @@
 }
 
 .Cell:hover {
-    stroke: #3DF5FF;
+    stroke: rgba(61, 245, 255, 0.47);
 }
 
 .CellDead {
