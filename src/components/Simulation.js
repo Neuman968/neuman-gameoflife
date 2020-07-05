@@ -16,8 +16,13 @@ const squareSize = 10;
 const Simulation = () => {
     const [cellState, setCellState] = useState({
         selectedIdx: getCellKey(0, 0),
-        aliveCells: {}
+        aliveCells: {},
     });
+
+    const [simulationState, setSimulationState] = useState({
+        running: false,
+        generation: 0,
+    })
 
     const cellAliveHandler = (row, column) => {
         let copy = {...cellState}
@@ -40,12 +45,14 @@ const Simulation = () => {
     return (<>
         <CellWorld
             updateAlive={cellAliveHandler}
+            running={simulationState.running}
             cellState={cellState}
             widthKeys={_cachedWidthKeys}
             lengthKeys={_cachedLengthKeys}
             squareSize={squareSize}
         />
         <WorldControls
+            running={simulationState.running}
             updateSelected={updateSelected}
             updateAlive={cellAliveHandler}
             cellState={cellState}

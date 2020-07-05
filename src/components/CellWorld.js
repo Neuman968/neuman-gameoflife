@@ -22,6 +22,7 @@ const CellWorld = (props) => {
                     let cellRow = props.lengthKeys.map((column) => {
                         const cellKey = getCellKey(row, column);
                         let cell = <Cell
+                            running={props.running}
                             isSelected={cellKey === props.cellState.selectedIdx}
                             isAlive={!!props.cellState.aliveCells[cellKey]}
                             key={cellKey}

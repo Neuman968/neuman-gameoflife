@@ -9,9 +9,13 @@ const Cell = (props) => {
 
     const cellClasses = [classes.Cell];
 
-    if (props.isSelected) {
-        cellClasses.push(classes.CellSelected)
+    if (!props.running) {
+        cellClasses.push(classes.EditableCell)
+        if (props.isSelected) {
+            cellClasses.push(classes.CellSelected)
+        }
     }
+
     cellClasses.push(props.isAlive ? classes.CellAlive : classes.CellDead)
 
     return <rect

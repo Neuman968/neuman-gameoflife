@@ -2,7 +2,9 @@
     font-size: 0;
 }
 
-.Cell:hover {
+.EditableCell {}
+
+.EditableCell:hover {
     stroke: rgba(61, 245, 255, 0.47);
 }
 
