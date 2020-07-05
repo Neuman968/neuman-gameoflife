@@ -20,8 +20,8 @@ const CellWorld = (props) => {
         justify="center"
     >
         <svg
-            width={gridWidth}
-            height={gridHeight}>
+            height={gridWidth}
+            width={gridHeight}>
             {
                 props.widthKeys.map((row) => {
                     let cellRow = props.lengthKeys.map((column) => {

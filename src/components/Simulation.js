@@ -7,8 +7,8 @@ export const getCellKey = (row, column) => row + '-' + column;
 export const rowColFromCelKey = (key) => key.split('-')
     .map((val) => parseInt(val));
 
-const _cachedLengthKeys = [...Array(10).keys()]
-const _cachedWidthKeys = [...Array(3).keys()]
+const _cachedLengthKeys = [...Array(100).keys()]
+const _cachedWidthKeys = [...Array(60).keys()]
 
 const squareSize = 10;
 
