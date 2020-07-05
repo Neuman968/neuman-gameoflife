@@ -1,68 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Cell from "./Cell";
-
-const getCellKey = (row, column) => row + '-' + column;
-
-const rowColFromCelKey = (key) => key.split('-')
-    .map((val) => parseInt(val));
+import {getCellKey} from "./Simulation";
 
 const CellWorld = (props) => {
-
-    const [state, setState] = useState({
-        cellState: {
-            selectedIdx: getCellKey(0, 0),
-            aliveCells: {}
-        },
-    });
-
-    const updateAlive = (row, column) => {
-        let cop = {...state};
-        const cellKey = getCellKey(row, column);
-        if (state.cellState.aliveCells[cellKey]) {
-            delete cop.cellState.aliveCells[cellKey];
-        } else {
-            cop.cellState.aliveCells[cellKey] = 1;
-        }
-        cop.cellState.selectedIdx = cellKey;
-        setState((_) => cop);
-    };
-
-    const updateSelected = (row, column) => {
-        let cop = {...state};
-        cop.cellState.selectedIdx = getCellKey(row, column);
-        setState((_) => cop)
-    }
-
-
-    const handleKeyEvent = (e) => {
-        let [row, column] = rowColFromCelKey(state.cellState.selectedIdx)
-        switch (e.key) {
-            case 'ArrowDown':
-                updateSelected(row + 1, column)
-                break;
-            case 'ArrowUp':
-                updateSelected(row - 1, column)
-                break;
-            case 'ArrowRight':
-                updateSelected(row, column + 1)
-                break;
-            case 'ArrowLeft':
-                updateSelected(row, column - 1)
-                break;
-            case  " ":
-            case 'Enter':
-                updateAlive(row, column);
-                break;
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener('keydown', handleKeyEvent);
-        return () => {
-            window.removeEventListener('keydown', handleKeyEvent);
-        }
-    }, []);
 
     let x = 0;
     let y = 0;
@@ -81,10 +22,10 @@ const CellWorld = (props) => {
                     let cellRow = props.lengthKeys.map((column) => {
                         const cellKey = getCellKey(row, column);
                         let cell = <Cell
-                            isSelected={cellKey === state.cellState.selectedIdx}
-                            isAlive={!!state.cellState.aliveCells[cellKey]}
+                            isSelected={cellKey === props.cellState.selectedIdx}
+                            isAlive={!!props.cellState.aliveCells[cellKey]}
                             key={cellKey}
-                            aliveHandler={updateAlive}
+                            aliveHandler={props.updateAlive}
                             row={row}
                             column={column}
                             x={x}
