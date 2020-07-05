@@ -1,10 +1,22 @@
 .Cell {
-    border: 1px solid mediumpurple;
     font-size: 0;
 }
 
+.Cell:hover {
+    stroke: #3DF5FF;
+}
+
+.CellDead {
+    fill: rgba(75,76,73,0.96);
+    stroke: rgba(75,76,73,0.96);
+}
+
+.CellAlive {
+    fill: #ff1200;
+    stroke: #ff1200
+}
+
 .CellSelected {
-    border: 1px solid #44ffe6;
-    font-size: 0;
+    stroke: #3DF5FF;
 }
 

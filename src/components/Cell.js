@@ -1,14 +1,5 @@
 import React from 'react';
-
-const DeadCell = (props) => (<rect {...props} style={{
-    fill: "rgba(75,76,73,0.96)",
-    stroke: props.isSelected ? "#3DF5FF" : "rgba(75,76,73,0.96)"
-}}/>)
-
-const AliveCell = (props) => (<rect {...props} style={{
-    fill: "#ff1200",
-    stroke: props.isSelected ? "#3DF5FF" : "#ff1200"
-}}/>)
+import classes from './Cell.module.css'
 
 const Cell = (props) => {
 
@@ -16,11 +7,18 @@ const Cell = (props) => {
         props.aliveHandler(props.row, props.column)
     }
 
-    if (props.isAlive) {
-        return <AliveCell {...props} onClick={() => aliveHandler()}/>
-    } else {
-        return <DeadCell {...props} onClick={() => aliveHandler()}/>
+    const cellClasses = [classes.Cell];
+
+    if (props.isSelected) {
+        cellClasses.push(classes.CellSelected)
     }
+    cellClasses.push(props.isAlive ? classes.CellAlive : classes.CellDead)
+
+    return <rect
+        onClick={() => aliveHandler()}
+        className={cellClasses.join(' ')}
+        {...props}
+    />
 };
 
 export default React.memo(Cell);
