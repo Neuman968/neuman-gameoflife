@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import CellWorld from "./CellWorld";
 import WorldControls from "./WorldControls";
 
@@ -13,6 +13,7 @@ const _cachedWidthKeys = [...Array(60).keys()]
 const squareSize = 10;
 
 const Simulation = () => {
+
     const [cellState, setCellState] = useState({
         selectedIdx: getCellKey(0, 0),
         aliveCells: {},
@@ -20,8 +21,30 @@ const Simulation = () => {
 
     const [simulationState, setSimulationState] = useState({
         running: false,
-        generation: 0,
+        generation: 1,
     })
+
+    // Increments cell generation
+    const nextGeneration = () => {
+        setSimulationState((prev) => {
+            return {
+                ...prev,
+                generation: prev.generation++
+            }
+        })
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+
+            if (simulationState.running) {
+                // Simulation logic here.
+
+                nextGeneration()
+            }
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [simulationState]);
 
     const cellAliveHandler = (row, column) => {
         let copy = {...cellState}
