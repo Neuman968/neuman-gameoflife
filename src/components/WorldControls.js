@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 const WorldControls = (props) => {
 
     const handleKeyEvent = (e) => {
-        let [column, row] = rowColFromCelKey(props.cellstate.selectedIdx)
+        let [row, column] = rowColFromCelKey(props.cellstate.selectedIdx)
         switch (e.code) {
             case 'ArrowDown':
                 props.updateselected(row + 1, column)
