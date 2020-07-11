@@ -46,7 +46,7 @@ const Simulation = () => {
         return () => clearTimeout(timer);
     }, [simulationState]);
 
-    const cellAliveHandler = (row, column) => {
+    const cellalivehandler = (row, column) => {
         let copy = {...cellstate}
         const cellKey = getCellKey(row, column)
         if (cellstate.aliveCells[cellKey]) {
@@ -72,7 +72,7 @@ const Simulation = () => {
 
     return (<>
         <CellWorld
-            updatealive={cellAliveHandler}
+            updatealive={cellalivehandler}
             running={simulationState.running}
             cellstate={cellstate}
             widthKeys={_cachedWidthKeys}
@@ -82,7 +82,7 @@ const Simulation = () => {
         <WorldControls
             running={simulationState.running}
             updateselected={updateselected}
-            updatealive={cellAliveHandler}
+            updatealive={cellalivehandler}
             cellstate={cellstate}
             updaterunning={updaterunning}
         />

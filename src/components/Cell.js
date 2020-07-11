@@ -3,23 +3,23 @@ import classes from './Cell.module.css'
 
 const Cell = (props) => {
 
-    const aliveHandler = () => {
-        props.aliveHandler(props.row, props.column)
+    const alivehandler = () => {
+        props.alivehandler(props.row, props.column)
     }
 
     const cellClasses = [classes.Cell];
 
     if (!props.running) {
         cellClasses.push(classes.EditableCell)
-        if (props.isSelected) {
+        if (props.isselected) {
             cellClasses.push(classes.CellSelected)
         }
     }
 
-    cellClasses.push(props.isAlive ? classes.CellAlive : classes.CellDead)
+    cellClasses.push(props.isalive ? classes.CellAlive : classes.CellDead)
 
     return <rect
-        onClick={() => aliveHandler()}
+        onClick={() => alivehandler()}
         className={cellClasses.join(' ')}
         {...props}
     />
