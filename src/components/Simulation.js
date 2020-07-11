@@ -41,8 +41,10 @@ const Simulation = () => {
                 // Simulation logic here.
                 const aliveCellCop = {...cellstate.aliveCells}
                 Object.fromEntries(Object.entries(aliveCellCop)
-                    .map((key, value) =>
-                        [key, value]
+                    .map((key, value) => {
+
+                            return [key, value]
+                        }
                     ))
                 nextGeneration()
             }
