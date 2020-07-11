@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import CellWorld from "./CellWorld";
 import WorldControls from "./WorldControls";
-import Button from "@material-ui/core/Button";
 
 export const getCellKey = (row, column) => row + '-' + column;
 
@@ -93,7 +92,6 @@ const Simulation = () => {
             cellstate={cellstate}
             updaterunning={updaterunning}
         />
-        <Button onClick={() => console.log(cellstate.aliveCells)}>Print state</Button>
     </>);
 }
 
