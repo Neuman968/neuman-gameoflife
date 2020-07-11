@@ -28,10 +28,10 @@ const CellWorld = (props) => {
                         const cellKey = getCellKey(row, column);
                         let cell = <Cell
                             running={props.running}
-                            isSelected={cellKey === props.cellState.selectedIdx}
-                            isAlive={!!props.cellState.aliveCells[cellKey]}
+                            isSelected={cellKey === props.cellstate.selectedIdx}
+                            isAlive={!!props.cellstate.aliveCells[cellKey]}
                             key={cellKey}
-                            aliveHandler={props.updateAlive}
+                            aliveHandler={props.updatealive}
                             row={row}
                             column={column}
                             x={x}

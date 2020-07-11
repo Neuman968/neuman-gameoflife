@@ -14,7 +14,7 @@ const squareSize = 10;
 
 const Simulation = () => {
 
-    const [cellState, setCellState] = useState({
+    const [cellstate, setcellstate] = useState({
         selectedIdx: getCellKey(0, 0),
         aliveCells: {},
     });
@@ -47,24 +47,24 @@ const Simulation = () => {
     }, [simulationState]);
 
     const cellAliveHandler = (row, column) => {
-        let copy = {...cellState}
+        let copy = {...cellstate}
         const cellKey = getCellKey(row, column)
-        if (cellState.aliveCells[cellKey]) {
+        if (cellstate.aliveCells[cellKey]) {
             delete copy.aliveCells[cellKey]
         } else {
             copy.aliveCells[cellKey] = 1;
         }
         copy.selectedIdx = cellKey;
-        setCellState((_) => copy);
+        setcellstate((_) => copy);
     }
 
-    const updateSelected = (row, column) => {
-        let copy = {...cellState}
+    const updateselected = (row, column) => {
+        let copy = {...cellstate}
         copy.selectedIdx = getCellKey(row, column)
-        setCellState((_) => copy)
+        setcellstate((_) => copy)
     }
 
-    const updateRunning = () => {
+    const updaterunning = () => {
         let copyState = {...simulationState}
         copyState.running = !copyState.running
         setSimulationState((_) => copyState)
@@ -72,19 +72,19 @@ const Simulation = () => {
 
     return (<>
         <CellWorld
-            updateAlive={cellAliveHandler}
+            updatealive={cellAliveHandler}
             running={simulationState.running}
-            cellState={cellState}
+            cellstate={cellstate}
             widthKeys={_cachedWidthKeys}
             lengthKeys={_cachedLengthKeys}
             squareSize={squareSize}
         />
         <WorldControls
             running={simulationState.running}
-            updateSelected={updateSelected}
-            updateAlive={cellAliveHandler}
-            cellState={cellState}
-            updateRunning={updateRunning}
+            updateselected={updateselected}
+            updatealive={cellAliveHandler}
+            cellstate={cellstate}
+            updaterunning={updaterunning}
         />
     </>);
 }

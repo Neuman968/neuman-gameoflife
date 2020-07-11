@@ -6,24 +6,24 @@ import Button from "@material-ui/core/Button";
 const WorldControls = (props) => {
 
     const handleKeyEvent = (e) => {
-        let [row, column] = rowColFromCelKey(props.cellState.selectedIdx)
+        let [row, column] = rowColFromCelKey(props.cellstate.selectedIdx)
         switch (e.code) {
             case 'ArrowDown':
-                props.updateSelected(row + 1, column)
+                props.updateselected(row + 1, column)
                 break;
             case 'ArrowUp':
-                props.updateSelected(row - 1, column)
+                props.updateselected(row - 1, column)
                 break;
             case 'ArrowRight':
-                props.updateSelected(row, column + 1)
+                props.updateselected(row, column + 1)
                 break;
             case 'ArrowLeft':
-                props.updateSelected(row, column - 1)
+                props.updateselected(row, column - 1)
                 break;
             case  " ":
             case "Space":
             case 'Enter':
-                props.updateAlive(row, column);
+                props.updatealive(row, column);
                 break;
         }
     }
@@ -37,7 +37,7 @@ const WorldControls = (props) => {
 
     return (<Card>
         <Button
-            onClick={props.updateRunning}
+            onClick={props.updaterunning}
             color="primary">
             {props.running ? <>Stop</> : <>Start</>}
         </Button>
