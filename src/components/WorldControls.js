@@ -21,11 +21,11 @@ const WorldControls = (props) => {
                 props.updateSelected(row, column - 1)
                 break;
             case  " ":
+            case "Space":
             case 'Enter':
                 props.updateAlive(row, column);
                 break;
         }
-        console.log("Updated selected " + row + " " + column)
     }
 
     useEffect(() => {
