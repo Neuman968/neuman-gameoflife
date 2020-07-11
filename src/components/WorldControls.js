@@ -7,7 +7,7 @@ const WorldControls = (props) => {
 
     const handleKeyEvent = (e) => {
         let [row, column] = rowColFromCelKey(props.cellState.selectedIdx)
-        switch (e.key) {
+        switch (e.code) {
             case 'ArrowDown':
                 props.updateSelected(row + 1, column)
                 break;
@@ -33,7 +33,7 @@ const WorldControls = (props) => {
         return () => {
             window.removeEventListener('keydown', handleKeyEvent);
         }
-    }, [props.cellState]);
+    }, [props]);
 
     return (<Card>
         <Button
