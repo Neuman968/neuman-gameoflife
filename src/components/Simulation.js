@@ -74,23 +74,23 @@ const Simulation = () => {
                         const [row, column] = val
                         const cellKey = getCellKey(row, column)
                         const isAlive = cellstate.aliveCells[cellKey]
-                        // todo Add inbounds check!!
                         if (!isAlive) {
                             deadNeighbors.push(cellKey)
                         }
                         return isAlive ? acc + 1 : acc
                     }, 0)
 
-                    console.log("Cell " + key + " has " + numberOfAliveNeighbors + " alive neighbors")
-                    // return [key, value]
+                    if (numberOfAliveNeighbors < 2 || numberOfAliveNeighbors > 3) {
+                        delete aliveCellCop[key]
+                    }
 
                 })
-
-                // Object.fromEntries(Object.entries(aliveCellCop)
-                //     .map((key, value) => {
-                //         console.log("Key " + key)
-                //         }
-                //     ))
+                setcellstate((prevstat) => {
+                    return {
+                        ...prevstat,
+                        aliveCells: aliveCellCop
+                    }
+                })
                 nextGeneration()
             }
         }, 500);
