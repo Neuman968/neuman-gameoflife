@@ -6,9 +6,36 @@ export const getCellKey = (row, column) => row + '-' + column;
 
 export const rowColFromCelKey = (key) => key.split('-')
     .map((val) => parseInt(val));
+/*
+{
+  "3-2": 1,
 
-const _cachedLengthKeys = [...Array(100).keys()]
-const _cachedWidthKeys = [...Array(60).keys()]
+  "3-1": 1,
+  "2-1": 1,
+  "2-2": 1,
+  "2-3": 1,
+  "4-3": 1,
+  "3-3": 1,
+  "4-2": 1,
+  "4-1": 1
+}
+ */
+/**
+ * Returns an array of arrays in the structure of
+ * [ [row, column], ... ] for each of the cells neighbors.
+ * @param key
+ * @returns {((number|*)[]|*[]|(*|number)[]|number[])[]}
+ */
+export const getKeyNeighbors = (key) => {
+    const [row, col] = rowColFromCelKey(key)
+    return [[row - 1, col], [row + 1, col],
+        [row, col - 1], [row, col + 1],
+        [row - 1, col - 1], [row + 1, col + 1],
+        [row + 1, col - 1], [row - 1, col + 1]];
+}
+
+const _cachedLengthKeys = [...Array(10).keys()]
+const _cachedWidthKeys = [...Array(6).keys()]
 
 const squareSize = 10;
 
@@ -39,13 +66,31 @@ const Simulation = () => {
 
             if (simulationState.running) {
                 // Simulation logic here.
+                const deadNeighbors = []
                 const aliveCellCop = {...cellstate.aliveCells}
-                Object.fromEntries(Object.entries(aliveCellCop)
-                    .map((key, value) => {
 
-                            return [key, value]
+                Object.keys(aliveCellCop).forEach((key) => {
+                    const numberOfAliveNeighbors = getKeyNeighbors(key).reduce((acc, val) => {
+                        const [row, column] = val
+                        const cellKey = getCellKey(row, column)
+                        const isAlive = cellstate.aliveCells[cellKey]
+                        // todo Add inbounds check!!
+                        if (!isAlive) {
+                            deadNeighbors.push(cellKey)
                         }
-                    ))
+                        return isAlive ? acc + 1 : acc
+                    }, 0)
+
+                    console.log("Cell " + key + " has " + numberOfAliveNeighbors + " alive neighbors")
+                    // return [key, value]
+
+                })
+
+                // Object.fromEntries(Object.entries(aliveCellCop)
+                //     .map((key, value) => {
+                //         console.log("Key " + key)
+                //         }
+                //     ))
                 nextGeneration()
             }
         }, 500);
