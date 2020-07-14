@@ -34,8 +34,8 @@ export const getKeyNeighbors = (key) => {
         [row + 1, col - 1], [row - 1, col + 1]];
 }
 
-const _cachedLengthKeys = [...Array(10).keys()]
-const _cachedWidthKeys = [...Array(6).keys()]
+const _cachedLengthKeys = [...Array(50).keys()]
+const _cachedWidthKeys = [...Array(50).keys()]
 
 const squareSize = 10;
 
@@ -108,7 +108,7 @@ const Simulation = () => {
                 })
                 nextGeneration()
             }
-        }, 500);
+        }, 1/100);
         return () => clearTimeout(timer);
     }, [simulationState]);
 
