@@ -34,6 +34,11 @@ export const getKeyNeighbors = (key) => {
         [row + 1, col - 1], [row - 1, col + 1]];
 }
 
+export const getAliveNeighbors = (key, isAliveFunc) => getKeyNeighbors(key).reduce((acc, val) => {
+    const [row, column] = val
+    return isAliveFunc(getCellKey(row, column)) ? acc + 1 : acc
+}, 0)
+
 const _cachedLengthKeys = [...Array(50).keys()]
 const _cachedWidthKeys = [...Array(50).keys()]
 
@@ -70,15 +75,13 @@ const Simulation = () => {
                 const aliveCellCop = {...cellstate.aliveCells}
 
                 Object.keys(aliveCellCop).forEach((key) => {
-                    const numberOfAliveNeighbors = getKeyNeighbors(key).reduce((acc, val) => {
-                        const [row, column] = val
-                        const cellKey = getCellKey(row, column)
+                    const numberOfAliveNeighbors = getAliveNeighbors(key, (cellKey) => {
                         const isAlive = cellstate.aliveCells[cellKey]
                         if (!isAlive) {
                             deadNeighbors.add(cellKey)
                         }
-                        return isAlive ? acc + 1 : acc
-                    }, 0)
+                        return isAlive
+                    })
 
                     // Condition for killing cells..
                     if (numberOfAliveNeighbors < 2 || numberOfAliveNeighbors > 3) {
@@ -88,27 +91,24 @@ const Simulation = () => {
                 })
 
                 deadNeighbors.forEach((deadCell) => {
-                    const numberOfAliveNeighbors = getKeyNeighbors(deadCell).reduce((acc, val) => {
-                        const [row, column] = val
-                        const cellKey = getCellKey(row, column)
-                        const isAlive = cellstate.aliveCells[cellKey]
-                        return isAlive ? acc + 1 : acc
-                    }, 0)
+                    const numberOfAliveNeighbors = getAliveNeighbors(deadCell, (cellKey) => cellstate.aliveCells[cellKey])
 
                     // If 3 neighbors exactly, the cell becomes alive!!
                     if (numberOfAliveNeighbors === 3) {
                         aliveCellCop[deadCell] = 1
                     }
                 })
+                // Update cell state...
                 setcellstate((prevstat) => {
                     return {
                         ...prevstat,
                         aliveCells: aliveCellCop
                     }
                 })
+                // Update to next generation...
                 nextGeneration()
             }
-        }, 1/100);
+        }, 1 / 100);
         return () => clearTimeout(timer);
     }, [simulationState]);
 
