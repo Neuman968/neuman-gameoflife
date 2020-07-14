@@ -66,7 +66,7 @@ const Simulation = () => {
 
             if (simulationState.running) {
                 // Simulation logic here.
-                const deadNeighbors = []
+                const deadNeighbors = new Set()
                 const aliveCellCop = {...cellstate.aliveCells}
 
                 Object.keys(aliveCellCop).forEach((key) => {
@@ -75,15 +75,30 @@ const Simulation = () => {
                         const cellKey = getCellKey(row, column)
                         const isAlive = cellstate.aliveCells[cellKey]
                         if (!isAlive) {
-                            deadNeighbors.push(cellKey)
+                            deadNeighbors.add(cellKey)
                         }
                         return isAlive ? acc + 1 : acc
                     }, 0)
 
+                    // Condition for killing cells..
                     if (numberOfAliveNeighbors < 2 || numberOfAliveNeighbors > 3) {
                         delete aliveCellCop[key]
                     }
 
+                })
+
+                deadNeighbors.forEach((deadCell) => {
+                    const numberOfAliveNeighbors = getKeyNeighbors(deadCell).reduce((acc, val) => {
+                        const [row, column] = val
+                        const cellKey = getCellKey(row, column)
+                        const isAlive = cellstate.aliveCells[cellKey]
+                        return isAlive ? acc + 1 : acc
+                    }, 0)
+
+                    // If 3 neighbors exactly, the cell becomes alive!!
+                    if (numberOfAliveNeighbors === 3) {
+                        aliveCellCop[deadCell] = 1
+                    }
                 })
                 setcellstate((prevstat) => {
                     return {
