@@ -108,7 +108,7 @@ const Simulation = () => {
                 // Update to next generation...
                 nextGeneration()
             }
-        }, 1 / 100);
+        }, 1 / 1000);
         return () => clearTimeout(timer);
     }, [simulationState]);
 
