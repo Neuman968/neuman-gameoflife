@@ -137,6 +137,13 @@ const Simulation = () => {
     }
 
     return (<>
+        <WorldControls
+            running={simulationState.running}
+            updateselected={updateselected}
+            updatealive={cellalivehandler}
+            cellstate={cellstate}
+            updaterunning={updaterunning}
+        />
         <CellWorld
             updatealive={cellalivehandler}
             running={simulationState.running}
@@ -144,13 +151,6 @@ const Simulation = () => {
             widthKeys={_cachedWidthKeys}
             lengthKeys={_cachedLengthKeys}
             squareSize={squareSize}
-        />
-        <WorldControls
-            running={simulationState.running}
-            updateselected={updateselected}
-            updatealive={cellalivehandler}
-            cellstate={cellstate}
-            updaterunning={updaterunning}
         />
     </>);
 }

@@ -18,6 +18,9 @@ const CellWorld = (props) => {
         height={gridHeight}
         alignItems="center"
         justify="center"
+        style={{
+            paddingTop: '2%'
+        }}
     >
         <svg
             height={gridWidth}

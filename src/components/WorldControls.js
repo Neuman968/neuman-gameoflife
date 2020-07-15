@@ -1,17 +1,22 @@
 import React, {useEffect} from "react";
 import {rowColFromCelKey} from "./Simulation";
-import Card from "@material-ui/core/Card";
-import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
-import CardContent from "@material-ui/core/CardContent";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from '@material-ui/icons/Menu';
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
     root: {
-        minWidth: 275,
-        backgroundColor: 'rgba(136,136,130,0.96)'
-    }
-});
-
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+}));
 
 const WorldControls = (props) => {
 
@@ -47,17 +52,19 @@ const WorldControls = (props) => {
         }
     }, [props]);
 
-    return (<Card className={classes.root}>
-        <CardContent>
-            <Button
-                onClick={props.updaterunning}
-                variant="contained"
-                color="secondary"
-            >
-                {props.running ? <>Stop</> : <>Start</>}
-            </Button>
-        </CardContent>
-    </Card>)
+    return (
+        <AppBar position="static">
+            <Toolbar variant="dense">
+                <Button
+                    onClick={props.updaterunning}
+                    variant="contained"
+                    color={props.running ? "secondary" : ""}
+                >
+                    {props.running ? <>Stop</> : <>Start</>}
+                </Button>
+            </Toolbar>
+        </AppBar>
+    )
 }
 
 export default React.memo(WorldControls);
