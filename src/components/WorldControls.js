@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {rowColFromCelKey} from "./Simulation";
 import {makeStyles} from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from "@material-ui/core/Button";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
 const WorldControls = (props) => {
 
     const classes = useStyles();
+
+    const [ drawerOpenState, setDrawerOpen ] = useState(false)
 
     const handleKeyEvent = (e) => {
         let [row, column] = rowColFromCelKey(props.cellstate.selectedIdx)
@@ -51,11 +54,29 @@ const WorldControls = (props) => {
         }
     }, [props]);
 
-    return (
+    const toggleDrawer = (open) => (event) => {
+        if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+
+        setDrawerOpen(open);
+    };
+
+    return (<>
+        <SwipeableDrawer
+            anchor="left"
+            open={drawerOpenState}
+            onClose={toggleDrawer(false)}
+            onOpen={toggleDrawer(true)}
+        >
+            <div>Hello!</div>
+        </SwipeableDrawer>
         <AppBar position="static">
             <Toolbar variant="dense">
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon />
+                    <MenuIcon
+                        onClick={toggleDrawer(true)}
+                    />
                 </IconButton>
                 <Button
                     onClick={props.updaterunning}
@@ -66,6 +87,7 @@ const WorldControls = (props) => {
                 </Button>
             </Toolbar>
         </AppBar>
+        </>
     )
 }
 
