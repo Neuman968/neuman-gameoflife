@@ -16,7 +16,11 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
     },
+    title: {
+        flexGrow: 1,
+    }
 }));
+
 
 const WorldControls = (props) => {
 
@@ -44,6 +48,7 @@ const WorldControls = (props) => {
             case 'Enter':
                 props.updatealive(row, column);
                 break;
+            default:
         }
     }
 
