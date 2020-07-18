@@ -22,7 +22,7 @@ const WorldControls = (props) => {
 
     const classes = useStyles();
 
-    const [ drawerOpenState, setDrawerOpen ] = useState(false)
+    const [drawerOpenState, setDrawerOpen] = useState(false)
 
     const handleKeyEvent = (e) => {
         let [row, column] = rowColFromCelKey(props.selectedIdx)
@@ -63,36 +63,36 @@ const WorldControls = (props) => {
     };
 
     return (<>
-        <SwipeableDrawer
-            anchor="left"
-            open={drawerOpenState}
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
-        >
-            <div>Hello!</div>
-        </SwipeableDrawer>
-        <AppBar position="static">
-            <Toolbar variant="dense">
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon
-                        onClick={toggleDrawer(true)}
-                    />
-                </IconButton>
-                <Button
-                    onClick={props.updaterunning}
-                    variant="contained"
-                    color={props.running ? "secondary" : ""}
-                >
-                    {props.running ? <>Stop</> : <>Start</>}
-                </Button>
-                <Button
-                    onClick={props.clearWorld}
-                    variant="container"
-                >
-                    Clear
-                </Button>
-            </Toolbar>
-        </AppBar>
+            <SwipeableDrawer
+                anchor="left"
+                open={drawerOpenState}
+                onClose={toggleDrawer(false)}
+                onOpen={toggleDrawer(true)}
+            >
+                <div>Hello!</div>
+            </SwipeableDrawer>
+            <AppBar position="static">
+                <Toolbar variant="dense">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                        <MenuIcon
+                            onClick={toggleDrawer(true)}
+                        />
+                    </IconButton>
+                    <Button
+                        onClick={props.updaterunning}
+                        variant="contained"
+                        color={props.running ? "secondary" : ""}
+                    >
+                        {props.running ? <>Stop</> : <>Start</>}
+                    </Button>
+                    <Button
+                        onClick={props.clearWorld}
+                        variant="container"
+                    >
+                        Clear
+                    </Button>
+                </Toolbar>
+            </AppBar>
         </>
     )
 }
