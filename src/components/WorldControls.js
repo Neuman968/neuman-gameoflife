@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from "@material-ui/core/Button";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import AppDrawerContents from "./AppDrawerContents";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -74,7 +75,7 @@ const WorldControls = (props) => {
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
             >
-                <div>Hello!</div>
+                <AppDrawerContents {...props} />
             </SwipeableDrawer>
             <div className={classes.root}>
                 <AppBar position="static">
