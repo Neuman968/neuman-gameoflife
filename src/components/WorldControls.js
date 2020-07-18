@@ -25,7 +25,7 @@ const WorldControls = (props) => {
     const [ drawerOpenState, setDrawerOpen ] = useState(false)
 
     const handleKeyEvent = (e) => {
-        let [row, column] = rowColFromCelKey(props.cellstate.selectedIdx)
+        let [row, column] = rowColFromCelKey(props.selectedIdx)
         switch (e.code) {
             case 'ArrowDown':
                 props.updateselected(row + 1, column)
@@ -84,6 +84,12 @@ const WorldControls = (props) => {
                     color={props.running ? "secondary" : ""}
                 >
                     {props.running ? <>Stop</> : <>Start</>}
+                </Button>
+                <Button
+                    onClick={props.clearWorld}
+                    variant="container"
+                >
+                    Clear
                 </Button>
             </Toolbar>
         </AppBar>
