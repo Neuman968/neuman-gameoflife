@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Simulation from "./components/Simulation";
 
@@ -9,18 +9,15 @@ import {ThemeProvider} from "@material-ui/styles";
 
 function App() {
 
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
     const theme = React.useMemo(
         () =>
             createMuiTheme({
                 palette: {
-                    type: prefersDarkMode ? 'dark' : 'light',
+                    type: 'dark',
                 },
             }),
-        [prefersDarkMode],
+        [],
     );
-
 
     return (
         <div className="App">

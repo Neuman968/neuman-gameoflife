@@ -6,20 +6,7 @@ export const getCellKey = (row, column) => row + '-' + column;
 
 export const rowColFromCelKey = (key) => key.split('-')
     .map((val) => parseInt(val));
-/*
-{
-  "3-2": 1,
 
-  "3-1": 1,
-  "2-1": 1,
-  "2-2": 1,
-  "2-3": 1,
-  "4-3": 1,
-  "3-3": 1,
-  "4-2": 1,
-  "4-1": 1
-}
- */
 /**
  * Returns an array of arrays in the structure of
  * [ [row, column], ... ] for each of the cells neighbors.
@@ -110,7 +97,7 @@ const Simulation = () => {
             }
         }, 1 / 10000);
         return () => clearTimeout(timer);
-    }, [simulationState]);
+    }, [cellstate.aliveCells, simulationState]);
 
     const cellalivehandler = (row, column) => {
         let copy = {...cellstate}
