@@ -83,10 +83,10 @@ const WorldControls = (props) => {
                         <IconButton edge="start"
                                     className={classes.menuButton}
                                     color="inherit"
-                                    aria-label="menu">
-                            <MenuIcon
-                                onClick={toggleDrawer(true)}
-                            />
+                                    aria-label="menu"
+                                    onClick={toggleDrawer(true)}
+                        >
+                            <MenuIcon/>
                         </IconButton>
 
                         <Button
