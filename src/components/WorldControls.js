@@ -76,28 +76,39 @@ const WorldControls = (props) => {
             >
                 <div>Hello!</div>
             </SwipeableDrawer>
-            <AppBar position="static">
-                <Toolbar variant="dense">
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon
-                            onClick={toggleDrawer(true)}
-                        />
-                    </IconButton>
-                    <Button
-                        onClick={props.updaterunning}
-                        variant="contained"
-                        color={props.running ? "secondary" : ""}
-                    >
-                        {props.running ? <>Stop</> : <>Start</>}
-                    </Button>
-                    <Button
-                        onClick={props.clearWorld}
-                        variant="container"
-                    >
-                        Clear
-                    </Button>
-                </Toolbar>
-            </AppBar>
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Toolbar variant="dense">
+                        <IconButton edge="start"
+                                    className={classes.menuButton}
+                                    color="inherit"
+                                    aria-label="menu">
+                            <MenuIcon
+                                onClick={toggleDrawer(true)}
+                            />
+                        </IconButton>
+
+                        <Button
+                            onClick={props.updaterunning}
+                            variant="contained"
+                            color={props.running ? "secondary" : ""}
+                        >
+                            {props.running ? <>Stop</> : <>Start</>}
+                        </Button>
+                        <div
+                            className={classes.title}
+                        >
+
+                        </div>
+                        <Button
+                            onClick={props.clearWorld}
+                            variant="container"
+                        >
+                            Clear
+                        </Button>
+                    </Toolbar>
+                </AppBar>
+            </div>
         </>
     )
 }
