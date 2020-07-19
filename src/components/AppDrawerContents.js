@@ -9,6 +9,8 @@ const useStyles = makeStyles({
     },
 });
 
+const getGridLabelFormat = (value) => `${value / 2} x ${value / 2}`;
+
 const AppDrawerContents = () => {
 
     const classes = useStyles()
@@ -16,13 +18,13 @@ const AppDrawerContents = () => {
     return (
         <div className={classes.root}>
             <Typography>
-                Grid settings
+                Grid Size
             </Typography>
             <Slider
                 className={classes.root}
                 defaultValue={30}
                 aria-labelledby="discrete-slider"
-                valueLabelDisplay="auto"
+                getAriaValueText={getGridLabelFormat}
                 step={10}
                 marks
                 min={10}
