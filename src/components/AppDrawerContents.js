@@ -27,7 +27,7 @@ const AppDrawerContents = (props) => {
             </Typography>
             <Slider
                 className={classes.slider}
-                defaultValue={50}
+                defaultValue={props.length}
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
                 getAriaValueText={(val) => val}
@@ -42,7 +42,7 @@ const AppDrawerContents = (props) => {
             </Typography>
             <Slider
                 className={classes.slider}
-                defaultValue={50}
+                defaultValue={props.width}
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
                 getAriaValueText={(val) => val}
