@@ -144,6 +144,7 @@ const Simulation = () => {
         />
         <CellWorld
             updatealive={cellalivehandler}
+            updateselected={updateselected}
             running={simulationState.running}
             aliveCells={cellstate.aliveCells}
             selectedIdx={cellstate.selectedIdx}

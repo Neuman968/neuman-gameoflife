@@ -19,6 +19,7 @@ const Cell = (props) => {
     cellClasses.push(props.isalive ? classes.CellAlive : classes.CellDead)
 
     return <rect
+        onMouseEnter={() => props.updateselected(props.row, props.column)}
         onClick={() => alivehandler()}
         className={cellClasses.join(' ')}
         {...props}
