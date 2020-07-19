@@ -26,9 +26,6 @@ export const getAliveNeighbors = (key, isAliveFunc) => getKeyNeighbors(key).redu
     return isAliveFunc(getCellKey(row, column)) ? acc + 1 : acc
 }, 0)
 
-const _cachedLengthKeys = [...Array(50).keys()]
-const _cachedWidthKeys = [...Array(50).keys()]
-
 const squareSize = 10;
 
 const blankCellState = {
@@ -43,6 +40,28 @@ const Simulation = () => {
     const [simulationState, setSimulationState] = useState({
         running: false,
         generation: 1,
+    })
+
+    const [gridState, setGridState] = useState({
+        length: 50,
+        width: 50,
+    })
+
+    const _cachedLengthKeys = [...Array(gridState.length).keys()]
+    const _cachedWidthKeys = [...Array(gridState.width).keys()]
+
+    const updateGridLength = (length) => setGridState((prev) => {
+        return {
+            ...prev,
+            length: length
+        }
+    })
+
+    const updateGridWidth = (width) => setGridState((prev) => {
+        return {
+            ...prev,
+            width: width
+        }
     })
 
     // Increments cell generation
@@ -141,6 +160,8 @@ const Simulation = () => {
             selectedIdx={cellstate.selectedIdx}
             updaterunning={updaterunning}
             clearWorld={clearWorld}
+            updateLength={updateGridLength}
+            updateWidth={updateGridWidth}
         />
         <CellWorld
             updatealive={cellalivehandler}
