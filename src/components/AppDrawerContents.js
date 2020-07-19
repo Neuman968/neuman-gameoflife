@@ -9,7 +9,8 @@ const useStyles = makeStyles({
         paddingTop: 20
     },
     slider: {
-        width: 280
+        width: 280,
+        paddingTop: 20
     }
 });
 
