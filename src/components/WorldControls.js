@@ -92,7 +92,7 @@ const WorldControls = (props) => {
                         <Button
                             onClick={props.updaterunning}
                             variant="contained"
-                            color={props.running ? "secondary" : ""}
+                            color={props.running ? "secondary" : "default"}
                         >
                             {props.running ? <>Stop</> : <>Start</>}
                         </Button>
