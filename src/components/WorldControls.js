@@ -31,23 +31,27 @@ const WorldControls = (props) => {
 
     const handleKeyEvent = (e) => {
         let [row, column] = rowColFromCelKey(props.selectedIdx)
-        e.preventDefault()
         switch (e.code) {
             case 'ArrowDown':
+                e.preventDefault()
                 props.updateselected(row + 1, column)
                 break;
             case 'ArrowUp':
+                e.preventDefault()
                 props.updateselected(row - 1, column)
                 break;
             case 'ArrowRight':
+                e.preventDefault()
                 props.updateselected(row, column + 1)
                 break;
             case 'ArrowLeft':
+                e.preventDefault()
                 props.updateselected(row, column - 1)
                 break;
             case  " ":
             case "Space":
             case 'Enter':
+                e.preventDefault()
                 props.updatealive(row, column);
                 break;
             default:
