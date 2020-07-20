@@ -8,14 +8,11 @@ const CellWorld = (props) => {
     let x = 0;
     let y = 0;
 
-    const gridHeight = (props.squareSize + 2) * props.lengthKeys.length
-    const gridWidth = (props.squareSize + 2) * props.widthKeys.length
-
     return <Grid
         container
         spacing={0}
-        width={gridWidth}
-        height={gridHeight}
+        width={props.gridwidth}
+        height={props.gridheight}
         alignItems="center"
         justify="center"
         style={{
@@ -23,8 +20,8 @@ const CellWorld = (props) => {
         }}
     >
         <svg
-            height={gridWidth}
-            width={gridHeight}>
+            height={props.gridwidth}
+            width={props.gridheight}>
             {
                 props.widthKeys.map((row) => {
                     let cellRow = props.lengthKeys.map((column) => {
@@ -35,6 +32,7 @@ const CellWorld = (props) => {
                             isselected={cellKey === props.selectedIdx}
                             isalive={!!props.aliveCells[cellKey]}
                             key={cellKey}
+                            cellKey={cellKey}
                             alivehandler={props.updatealive}
                             row={row}
                             column={column}
