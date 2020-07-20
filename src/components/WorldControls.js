@@ -103,7 +103,6 @@ const WorldControls = (props) => {
                         </div>
                         <Button
                             onClick={props.clearWorld}
-                            variant="container"
                         >
                             Clear
                         </Button>
