@@ -161,8 +161,8 @@ const Simulation = () => {
             updaterunning={updaterunning}
             clearWorld={clearWorld}
             updateLength={updateGridLength}
-            length={gridState.y}
-            width={gridState.x}
+            length={gridState.yKeys.length}
+            width={gridState.xKeys.length}
             updateWidth={updateGridWidth}
         />
         <CellWorld
