@@ -55,4 +55,4 @@ const CellWorld = (props) => {
     </Grid>
 };
 
-export default React.memo(CellWorld);
+export default CellWorld;
