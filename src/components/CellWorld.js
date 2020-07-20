@@ -30,7 +30,7 @@ const CellWorld = (props) => {
                     let cellRow = props.lengthKeys.map((column) => {
                         const cellKey = getCellKey(row, column);
                         let cell = <Cell
-                            running={props.running}
+                            running={props.running ? 1 : 0}
                             updateselected={props.updateselected}
                             isselected={cellKey === props.selectedIdx}
                             isalive={!!props.aliveCells[cellKey]}

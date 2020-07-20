@@ -22,7 +22,10 @@ const Cell = (props) => {
         onMouseEnter={() => props.updateselected(props.row, props.column)}
         onClick={() => alivehandler()}
         className={cellClasses.join(' ')}
-        {...props}
+        height={props.height}
+        width={props.width}
+        x={props.x}
+        y={props.y}
     />
 };
 
