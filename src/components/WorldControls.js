@@ -31,6 +31,7 @@ const WorldControls = (props) => {
 
     const handleKeyEvent = (e) => {
         let [row, column] = rowColFromCelKey(props.selectedIdx)
+        e.preventDefault()
         switch (e.code) {
             case 'ArrowDown':
                 props.updateselected(row + 1, column)
