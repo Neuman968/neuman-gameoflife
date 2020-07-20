@@ -43,24 +43,24 @@ const Simulation = () => {
     })
 
     const [gridState, setGridState] = useState({
-        x: 50,
-        y: 50,
+        xKeys: [...Array(50).keys()],
+        yKeys: [...Array(50).keys()],
     })
 
-    const xKeys = [...Array(gridState.x).keys()]
-    const yKeys = [...Array(gridState.y).keys()]
+    // const xKeys = [...Array(gridState.x).keys()]
+    // const yKeys = [...Array(gridState.y).keys()]
 
     const updateGridLength = (length) => setGridState((prev) => {
         return {
             ...prev,
-            y: length
+            yKeys: [...Array(length).keys()]
         }
     })
 
     const updateGridWidth = (width) => setGridState((prev) => {
         return {
             ...prev,
-            x: width
+            xKeys: [...Array(width).keys()]
         }
     })
 
@@ -171,8 +171,8 @@ const Simulation = () => {
             running={simulationState.running}
             aliveCells={cellstate.aliveCells}
             selectedIdx={cellstate.selectedIdx}
-            widthKeys={yKeys}
-            lengthKeys={xKeys}
+            widthKeys={gridState.yKeys}
+            lengthKeys={gridState.xKeys}
             squareSize={squareSize}
         />
     </>);
