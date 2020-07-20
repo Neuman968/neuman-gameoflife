@@ -35,7 +35,7 @@ const AppDrawerContents = (props) => {
                 step={10}
                 marks
                 min={10}
-                max={150}
+                max={100}
                 onChange={updateLength}
             />
             <Typography>
@@ -50,7 +50,7 @@ const AppDrawerContents = (props) => {
                 step={10}
                 marks
                 min={10}
-                max={150}
+                max={100}
                 onChange={updateWidth}
             />
         </div>
