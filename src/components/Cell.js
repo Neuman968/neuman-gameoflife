@@ -1,32 +1,72 @@
-import React from 'react';
+import React, {Component} from 'react';
 import classes from './Cell.module.css'
 
-const Cell = (props) => {
+class Cell extends Component {
 
-    const alivehandler = () => {
-        props.alivehandler(props.row, props.column)
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        // console.log(this.props.key + ' Updated: ' + prevProps.isalive !== this.props.isalive)
+        const didUpdate = prevProps.isalive !== this.props.isalive
+        // if (didUpdate) {
+        //     console.log("Cell " + this.props.cellKey + " Updated")
+        // }
+        return didUpdate
     }
 
-    const cellClasses = [classes.Cell];
+    render = () => {
 
-    if (!props.running) {
-        cellClasses.push(classes.EditableCell)
-        if (props.isselected) {
-            cellClasses.push(classes.CellSelected)
+        const alivehandler = () => {
+            this.props.alivehandler(this.props.row, this.props.column)
         }
+
+        const cellClasses = [classes.Cell];
+        
+        if (!this.props.running) {
+            cellClasses.push(classes.EditableCell)
+            if (this.props.isselected) {
+                cellClasses.push(classes.CellSelected)
+            }
+        }
+
+        cellClasses.push(this.props.isalive ? classes.CellAlive : classes.CellDead)
+
+        return <rect
+            onMouseEnter={() => this.props.updateselected(this.props.row, this.props.column)}
+            onClick={() => alivehandler()}
+            className={cellClasses.join(' ')}
+            height={this.props.height}
+            width={this.props.width}
+            x={this.props.x}
+            y={this.props.y}
+        />
     }
+}
 
-    cellClasses.push(props.isalive ? classes.CellAlive : classes.CellDead)
+// const Cell = (this.props) => {
+//
+//     const alivehandler = () => {
+//         this.props.alivehandler(this.props.row, this.props.column)
+//     }
+//
+//     const cellClasses = [classes.Cell];
+//
+//     if (!this.props.running) {
+//         cellClasses.push(classes.EditableCell)
+//         if (this.props.isselected) {
+//             cellClasses.push(classes.CellSelected)
+//         }
+//     }
+//
+//     cellClasses.push(this.props.isalive ? classes.CellAlive : classes.CellDead)
+//
+//     return <rect
+//         onMouseEnter={() => this.props.updateselected(this.props.row, this.props.column)}
+//         onClick={() => alivehandler()}
+//         className={cellClasses.join(' ')}
+//         height={this.props.height}
+//         width={this.props.width}
+//         x={this.props.x}
+//         y={this.props.y}
+//     />
+// };
 
-    return <rect
-        onMouseEnter={() => props.updateselected(props.row, props.column)}
-        onClick={() => alivehandler()}
-        className={cellClasses.join(' ')}
-        height={props.height}
-        width={props.width}
-        x={props.x}
-        y={props.y}
-    />
-};
-
-export default React.memo(Cell);
+export default Cell;
