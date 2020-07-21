@@ -47,19 +47,19 @@ const Simulation = () => {
         gridWidth: (squareSize + 2) * 50,
     })
 
-    const updateGridLength = (length) => setGridState((prev) => {
+    const updateGridWidth = (length) => setGridState((prev) => {
         return {
             ...prev,
-            gridHeight: (squareSize + 2) * length,
-            colHeight: length
+            gridWidth: (squareSize + 2) * length,
+            colWidth: length
         }
     })
 
-    const updateGridWidth = (width) => setGridState((prev) => {
+    const updateGridHeight = (width) => setGridState((prev) => {
         return {
             ...prev,
-            gridWidth: (squareSize + 2) * width,
-            colWidth: width
+            gridHeight: (squareSize + 2) * width,
+            colHeight: width
         }
     })
 
@@ -138,10 +138,10 @@ const Simulation = () => {
             selectedIdx={cellstate.selectedIdx}
             updaterunning={updaterunning}
             clearWorld={clearWorld}
-            updateLength={updateGridLength}
+            updateLength={updateGridWidth}
             length={gridState.colHeight}
             width={gridState.colWidth}
-            updateWidth={updateGridWidth}
+            updateWidth={updateGridHeight}
         />
         <CellWorld
             updatealive={cellalivehandler}
