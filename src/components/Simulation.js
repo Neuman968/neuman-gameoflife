@@ -41,10 +41,10 @@ const Simulation = () => {
     })
 
     const [gridState, setGridState] = useState({
-        colHeight: 100,
-        colWidth: 100,
-        gridHeight: (squareSize + 2) * 100,
-        gridWidth: (squareSize + 2) * 100,
+        colHeight: 50,
+        colWidth: 50,
+        gridHeight: (squareSize + 2) * 50,
+        gridWidth: (squareSize + 2) * 50,
     })
 
     const updateGridLength = (length) => setGridState((prev) => {
