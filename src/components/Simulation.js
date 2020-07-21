@@ -120,7 +120,7 @@ const Simulation = () => {
                 // Update to next generation...
                 nextGeneration()
             }
-        }, 1 / 10000);
+        }, 1);
         return () => clearTimeout(timer);
     }, [cellstate.aliveCells, simulationState]);
 
