@@ -2,6 +2,7 @@ import React from 'react'
 import {makeStyles} from "@material-ui/core/styles";
 import Slider from '@material-ui/core/Slider';
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
     root: {
@@ -53,6 +54,11 @@ const AppDrawerContents = (props) => {
                 max={100}
                 onChange={updateWidth}
             />
+            <Button
+                onClick={props.randomize}
+            >
+                Randomize
+            </Button>
         </div>
     )
 }

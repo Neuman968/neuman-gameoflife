@@ -63,6 +63,22 @@ const Simulation = () => {
         }
     })
 
+    const randomize = () => {
+        const numberToGenerate = Math.floor((Math.random() * (gridState.colWidth * gridState.colHeight)) + 1);
+        const nextState = {...cellstate.aliveCells}
+        for (let i = 0; i < numberToGenerate; i++) {
+            const cellKey = getCellKey(Math.floor((Math.random() * gridState.colWidth)),
+                Math.floor((Math.random() * gridState.colHeight)))
+            nextState[cellKey] = 1
+        }
+        setcellstate((prevstat) => {
+            return {
+                ...prevstat,
+                aliveCells: nextState
+            }
+        })
+    }
+
     useEffect(() => {
         const timer = setTimeout(() => {
 
@@ -94,7 +110,7 @@ const Simulation = () => {
                 })
                 // Update to next generation...
             }
-        }, 1);
+        }, 100);
         return () => clearTimeout(timer);
     }, [cellstate.aliveCells, simulationState]);
 
@@ -131,6 +147,7 @@ const Simulation = () => {
 
     return (<>
         <WorldControls
+            randomize={randomize}
             running={simulationState.running}
             updateselected={updateselected}
             updatealive={cellalivehandler}
