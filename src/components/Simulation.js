@@ -13,15 +13,14 @@ export const rowColFromCelKey = (key) => key.split('-')
  * @param key
  * @returns {((number|*)[]|*[]|(*|number)[]|number[])[]}
  */
-export const getKeyNeighbors = (key) => {
-    const [row, col] = rowColFromCelKey(key)
+export const getKeyNeighbors = (row, col) => {
     return [[row - 1, col], [row + 1, col],
         [row, col - 1], [row, col + 1],
         [row - 1, col - 1], [row + 1, col + 1],
         [row + 1, col - 1], [row - 1, col + 1]];
 }
 
-export const getAliveNeighbors = (key, isAliveFunc) => getKeyNeighbors(key).reduce((acc, val) => {
+export const getAliveNeighbors = (row, col, isAliveFunc) => getKeyNeighbors(row, col).reduce((acc, val) => {
     const [row, column] = val
     return isAliveFunc(getCellKey(row, column)) ? acc + 1 : acc
 }, 0)
@@ -73,14 +72,17 @@ const Simulation = () => {
                 for (let x = 0; x < gridState.xKeys.length; x++) {
                     for (let y = 0; y < gridState.yKeys.length; y++) {
                         const cellKey = getCellKey(x, y);
-                        const aliveNeightbors = getAliveNeighbors(cellKey, (key) => cellstate.aliveCells[key])
+                        const aliveNeightbors = getAliveNeighbors(x, y, (key) => cellstate.aliveCells[key])
 
+                        // If cell is either over populated or under populated, then it dies.
                         if (aliveNeightbors < 2 || aliveNeightbors > 3) {
                             delete aliveCellCop[cellKey]
                         }
-                         if (aliveNeightbors === 3) {
-                             aliveCellCop[cellKey] = 1
-                         }
+
+                        // if cell has exactly 3 alive neighbors, then it reproduces.
+                        if (aliveNeightbors === 3) {
+                            aliveCellCop[cellKey] = 1
+                        }
                     }
                 }
 
