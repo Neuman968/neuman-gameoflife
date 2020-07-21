@@ -39,23 +39,19 @@ const Simulation = () => {
 
     const [simulationState, setSimulationState] = useState({
         running: false,
-        generation: 1,
     })
 
     const [gridState, setGridState] = useState({
-        xKeys: [...Array(50).keys()],
-        yKeys: [...Array(50).keys()],
-        gridHeight: (squareSize + 2) * 50,
-        gridWidth: (squareSize + 2) * 50,
+        xKeys: [...Array(100).keys()],
+        yKeys: [...Array(100).keys()],
+        gridHeight: (squareSize + 2) * 100,
+        gridWidth: (squareSize + 2) * 100,
     })
-
-    // const xKeys = [...Array(gridState.x).keys()]
-    // const yKeys = [...Array(gridState.y).keys()]
 
     const updateGridLength = (length) => setGridState((prev) => {
         return {
             ...prev,
-            gridHeight: (squareSize + 2) * length ,
+            gridHeight: (squareSize + 2) * length,
             yKeys: [...Array(length).keys()]
         }
     })
@@ -68,49 +64,26 @@ const Simulation = () => {
         }
     })
 
-    // Increments cell generation
-    const nextGeneration = () => {
-        setSimulationState((prev) => {
-            return {
-                ...prev,
-                generation: prev.generation++
-            }
-        })
-    }
-
     useEffect(() => {
         const timer = setTimeout(() => {
 
             if (simulationState.running) {
-                // Simulation logic here.
-                const deadNeighbors = new Set()
+
                 const aliveCellCop = {...cellstate.aliveCells}
+                for (let x = 0; x < gridState.xKeys.length; x++) {
+                    for (let y = 0; y < gridState.yKeys.length; y++) {
+                        const cellKey = getCellKey(x, y);
+                        const aliveNeightbors = getAliveNeighbors(cellKey, (key) => cellstate.aliveCells[key])
 
-                Object.keys(aliveCellCop).forEach((key) => {
-                    const numberOfAliveNeighbors = getAliveNeighbors(key, (cellKey) => {
-                        const isAlive = cellstate.aliveCells[cellKey]
-                        if (!isAlive) {
-                            deadNeighbors.add(cellKey)
+                        if (aliveNeightbors < 2 || aliveNeightbors > 3) {
+                            delete aliveCellCop[cellKey]
                         }
-                        return isAlive
-                    })
-
-                    // Condition for killing cells..
-                    if (numberOfAliveNeighbors < 2 || numberOfAliveNeighbors > 3) {
-                        delete aliveCellCop[key]
+                         if (aliveNeightbors === 3) {
+                             aliveCellCop[cellKey] = 1
+                         }
                     }
+                }
 
-                })
-
-                deadNeighbors.forEach((deadCell) => {
-                    const numberOfAliveNeighbors = getAliveNeighbors(deadCell, (cellKey) => cellstate.aliveCells[cellKey])
-
-                    // If 3 neighbors exactly, the cell becomes alive!!
-                    if (numberOfAliveNeighbors === 3) {
-                        aliveCellCop[deadCell] = 1
-                    }
-                })
-                // Update cell state...
                 setcellstate((prevstat) => {
                     return {
                         ...prevstat,
@@ -118,7 +91,6 @@ const Simulation = () => {
                     }
                 })
                 // Update to next generation...
-                nextGeneration()
             }
         }, 1);
         return () => clearTimeout(timer);

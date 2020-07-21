@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import classes from './Cell.module.css'
+import {getCellKey} from "./Simulation";
 
 class Cell extends Component {
 
@@ -15,6 +16,7 @@ class Cell extends Component {
     render = () => {
 
         const alivehandler = () => {
+            console.log(getCellKey(this.props.row, this.props.column))
             this.props.alivehandler(this.props.row, this.props.column)
         }
 
