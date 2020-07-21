@@ -41,8 +41,8 @@ const Simulation = () => {
     })
 
     const [gridState, setGridState] = useState({
-        xKeys: [...Array(100).keys()],
-        yKeys: [...Array(100).keys()],
+        colHeight: 100,
+        colWidth: 100,
         gridHeight: (squareSize + 2) * 100,
         gridWidth: (squareSize + 2) * 100,
     })
@@ -51,7 +51,7 @@ const Simulation = () => {
         return {
             ...prev,
             gridHeight: (squareSize + 2) * length,
-            yKeys: [...Array(length).keys()]
+            colHeight: length
         }
     })
 
@@ -59,7 +59,7 @@ const Simulation = () => {
         return {
             ...prev,
             gridWidth: (squareSize + 2) * width,
-            xKeys: [...Array(width).keys()]
+            colWidth: width
         }
     })
 
@@ -69,8 +69,8 @@ const Simulation = () => {
             if (simulationState.running) {
 
                 const aliveCellCop = {...cellstate.aliveCells}
-                for (let x = 0; x < gridState.xKeys.length; x++) {
-                    for (let y = 0; y < gridState.yKeys.length; y++) {
+                for (let x = 0; x < gridState.colWidth; x++) {
+                    for (let y = 0; y < gridState.colHeight; y++) {
                         const cellKey = getCellKey(x, y);
                         const aliveNeightbors = getAliveNeighbors(x, y, (key) => cellstate.aliveCells[key])
 
@@ -139,8 +139,8 @@ const Simulation = () => {
             updaterunning={updaterunning}
             clearWorld={clearWorld}
             updateLength={updateGridLength}
-            length={gridState.yKeys.length}
-            width={gridState.xKeys.length}
+            length={gridState.colHeight}
+            width={gridState.colWidth}
             updateWidth={updateGridWidth}
         />
         <CellWorld
@@ -149,8 +149,10 @@ const Simulation = () => {
             running={simulationState.running}
             aliveCells={cellstate.aliveCells}
             selectedIdx={cellstate.selectedIdx}
-            widthKeys={gridState.yKeys}
-            lengthKeys={gridState.xKeys}
+
+            colWidth={gridState.colWidth}
+            colHeight={gridState.colHeight}
+
             gridheight={gridState.gridHeight}
             gridwidth={gridState.gridWidth}
             squareSize={squareSize}

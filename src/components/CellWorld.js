@@ -8,6 +8,32 @@ const CellWorld = (props) => {
     let x = 0;
     let y = 0;
 
+    const cellArray = [];
+    for (let w = 0; w < props.colWidth; w++) {
+        for (let c = 0; c < props.colHeight; c++) {
+            const cellKey = getCellKey(w, c);
+            let cell = <Cell
+                running={props.running ? 1 : 0}
+                updateselected={props.updateselected}
+                isselected={cellKey === props.selectedIdx}
+                isalive={!!props.aliveCells[cellKey]}
+                key={cellKey}
+                cellKey={cellKey}
+                alivehandler={props.updatealive}
+                row={w}
+                column={c}
+                x={x}
+                y={y}
+                height={props.squareSize}
+                width={props.squareSize}
+            />
+            x += props.squareSize + 2;
+            cellArray.push(cell);
+        }
+        y += props.squareSize + 2;
+        x = 0;
+    }
+
     return <Grid
         container
         spacing={0}
@@ -23,31 +49,7 @@ const CellWorld = (props) => {
             height={props.gridwidth}
             width={props.gridheight}>
             {
-                props.widthKeys.map((row) => {
-                    let cellRow = props.lengthKeys.map((column) => {
-                        const cellKey = getCellKey(row, column);
-                        let cell = <Cell
-                            running={props.running ? 1 : 0}
-                            updateselected={props.updateselected}
-                            isselected={cellKey === props.selectedIdx}
-                            isalive={!!props.aliveCells[cellKey]}
-                            key={cellKey}
-                            cellKey={cellKey}
-                            alivehandler={props.updatealive}
-                            row={row}
-                            column={column}
-                            x={x}
-                            y={y}
-                            height={props.squareSize}
-                            width={props.squareSize}
-                        />
-                        x += props.squareSize + 2;
-                        return cell;
-                    })
-                    y += props.squareSize + 2;
-                    x = 0;
-                    return cellRow
-                })
+                cellArray
             }
         </svg>
     </Grid>
