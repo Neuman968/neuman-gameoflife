@@ -68,20 +68,20 @@ const Simulation = () => {
 
             if (simulationState.running) {
 
-                const aliveCellCop = {...cellstate.aliveCells}
+                const nextState = {...cellstate.aliveCells}
                 for (let x = 0; x < gridState.colWidth; x++) {
                     for (let y = 0; y < gridState.colHeight; y++) {
                         const cellKey = getCellKey(x, y);
-                        const aliveNeightbors = getAliveNeighbors(x, y, (key) => cellstate.aliveCells[key])
+                        const aliveNeighbors = getAliveNeighbors(x, y, (key) => cellstate.aliveCells[key])
 
                         // If cell is either over populated or under populated, then it dies.
-                        if (aliveNeightbors < 2 || aliveNeightbors > 3) {
-                            delete aliveCellCop[cellKey]
+                        if (aliveNeighbors < 2 || aliveNeighbors > 3) {
+                            delete nextState[cellKey]
                         }
 
                         // if cell has exactly 3 alive neighbors, then it reproduces.
-                        if (aliveNeightbors === 3) {
-                            aliveCellCop[cellKey] = 1
+                        if (aliveNeighbors === 3) {
+                            nextState[cellKey] = 1
                         }
                     }
                 }
@@ -89,7 +89,7 @@ const Simulation = () => {
                 setcellstate((prevstat) => {
                     return {
                         ...prevstat,
-                        aliveCells: aliveCellCop
+                        aliveCells: nextState
                     }
                 })
                 // Update to next generation...
