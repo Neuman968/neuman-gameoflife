@@ -149,10 +149,8 @@ const Simulation = () => {
             running={simulationState.running}
             aliveCells={cellstate.aliveCells}
             selectedIdx={cellstate.selectedIdx}
-
             colWidth={gridState.colWidth}
             colHeight={gridState.colHeight}
-
             gridheight={gridState.gridHeight}
             gridwidth={gridState.gridWidth}
             squareSize={squareSize}
