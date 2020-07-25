@@ -2,8 +2,20 @@ import React, {useEffect, useState} from "react";
 import CellWorld from "./CellWorld";
 import WorldControls from "./WorldControls";
 
+/**
+ * Converts a row, column into a cell key in the format of "{row}-{column}"
+ * @param row
+ * @param column
+ * @returns {string}
+ */
 export const getCellKey = (row, column) => row + '-' + column;
 
+/**
+ * Converts a cell get in the format of "{row}-{column}" into an array of
+ *  [ row, column ]
+ * @param key
+ * @returns {number[]}
+ */
 export const rowColFromCelKey = (key) => key.split('-')
     .map((val) => parseInt(val));
 
