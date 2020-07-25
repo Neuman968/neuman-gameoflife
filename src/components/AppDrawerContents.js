@@ -3,9 +3,9 @@ import {makeStyles} from "@material-ui/core/styles";
 import Slider from '@material-ui/core/Slider';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import SelectInput from "@material-ui/core/Select/SelectInput";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import {barSelector, dotSelector, gliderSelector} from "./CellSelectors";
 
 const useStyles = makeStyles({
     root: {
@@ -31,11 +31,12 @@ const AppDrawerContents = (props) => {
                 Cell Selector
             </Typography>
             <Select
-                value={1}
+                value={dotSelector}
+                onChange={(event) => props.updatecellselector(event.target.value)}
             >
-                <MenuItem value={1}>Single Square</MenuItem>
-                <MenuItem value={2}>Bar</MenuItem>
-                <MenuItem value={3}>Glider</MenuItem>
+                <MenuItem value={dotSelector}>Single Square</MenuItem>
+                <MenuItem value={barSelector}>Bar</MenuItem>
+                <MenuItem value={gliderSelector}>Glider</MenuItem>
             </Select>
             <Typography>
                 Grid Length
