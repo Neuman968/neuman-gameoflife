@@ -5,12 +5,7 @@ import {getCellKey} from "./Simulation";
 class Cell extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        // console.log(this.props.key + ' Updated: ' + prevProps.isalive !== this.props.isalive)
-        const didUpdate = prevProps.isalive !== this.props.isalive
-        // if (didUpdate) {
-        //     console.log("Cell " + this.props.cellKey + " Updated")
-        // }
-        return didUpdate
+        return prevProps.isalive !== this.props.isalive
     }
 
     render = () => {
@@ -21,7 +16,7 @@ class Cell extends Component {
         }
 
         const cellClasses = [classes.Cell];
-        
+
         if (!this.props.running) {
             cellClasses.push(classes.EditableCell)
             if (this.props.isselected) {
