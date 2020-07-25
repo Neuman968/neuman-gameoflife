@@ -12,7 +12,7 @@ export const gliderSelector = (selectedIdx) => {
     return mapToCellKey([[row - 1, col - 1], [row + 1, col - 1], [row, col + 1], [row + 1, col], [row, col]])
 }
 
-export const gliderGun = (selectedIdx) => {
+export const gliderGunSelector = (selectedIdx) => {
     const [row, col] = rowColFromCelKey(selectedIdx)
     return mapToCellKey([
         [row, col], [row, col + 1], [row + 1, col], [row + 1, col + 1],

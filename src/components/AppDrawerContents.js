@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import {barSelector, dotSelector, gliderSelector} from "./CellSelectors";
+import {barSelector, dotSelector, gliderGunSelector, gliderSelector} from "./CellSelectors";
 
 const useStyles = makeStyles({
     root: {
@@ -37,6 +37,7 @@ const AppDrawerContents = (props) => {
                 <MenuItem value={dotSelector}>Single Square</MenuItem>
                 <MenuItem value={barSelector}>Bar</MenuItem>
                 <MenuItem value={gliderSelector}>Glider</MenuItem>
+                <MenuItem value={gliderGunSelector}>Glider Gun</MenuItem>
             </Select>
             <Typography>
                 Grid Length
