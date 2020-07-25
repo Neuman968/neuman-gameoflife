@@ -94,6 +94,37 @@ const Simulation = () => {
         })
     }
 
+    const cellalivehandler = (row, column) => {
+        let copy = {...cellstate}
+        const cellKey = getCellKey(row, column)
+        if (cellstate.aliveCells[cellKey]) {
+            delete copy.aliveCells[cellKey]
+        } else {
+            copy.aliveCells[cellKey] = 1;
+        }
+        copy.selectedIdx = cellKey;
+        setcellstate((_) => copy);
+    }
+
+    const clearWorld = () => {
+        let copy = {...cellstate}
+        copy.aliveCells = {};
+        copy.selectedIdx = getCellKey(0, 0)
+        setcellstate((_) => copy)
+    }
+
+    const updateselected = (row, column) => {
+        let copy = {...selectorState}
+        copy.selectedIdx = getCellKey(row, column)
+        setSelectorState((_) => copy)
+    }
+
+    const updaterunning = () => {
+        let copyState = {...simulationState}
+        copyState.running = !copyState.running
+        setSimulationState((_) => copyState)
+    }
+
     useEffect(() => {
         const timer = setTimeout(() => {
 
@@ -126,37 +157,6 @@ const Simulation = () => {
         }, 10);
         return () => clearTimeout(timer);
     }, [cellstate.aliveCells, simulationState]);
-
-    const cellalivehandler = (row, column) => {
-        let copy = {...cellstate}
-        const cellKey = getCellKey(row, column)
-        if (cellstate.aliveCells[cellKey]) {
-            delete copy.aliveCells[cellKey]
-        } else {
-            copy.aliveCells[cellKey] = 1;
-        }
-        copy.selectedIdx = cellKey;
-        setcellstate((_) => copy);
-    }
-
-    const clearWorld = () => {
-        let copy = {...cellstate}
-        copy.aliveCells = {};
-        copy.selectedIdx = getCellKey(0, 0)
-        setcellstate((_) => copy)
-    }
-
-    const updateselected = (row, column) => {
-        let copy = {...selectorState}
-        copy.selectedIdx = getCellKey(row, column)
-        setSelectorState((_) => copy)
-    }
-
-    const updaterunning = () => {
-        let copyState = {...simulationState}
-        copyState.running = !copyState.running
-        setSimulationState((_) => copyState)
-    }
 
     return (<>
         <WorldControls
