@@ -40,13 +40,16 @@ export const getAliveNeighbors = (row, col, isAliveFunc) => getKeyNeighbors(row,
 const squareSize = 10;
 
 const blankCellState = {
-    selectedIdx: getCellKey(0, 0),
     aliveCells: {},
 }
 
 const Simulation = () => {
 
     const [cellstate, setcellstate] = useState(blankCellState);
+
+    const [ selectorState, setSelectorState ] = useState({
+        selectedIdx: '0-0',
+    })
 
     const [simulationState, setSimulationState] = useState({
         running: false,
@@ -144,9 +147,9 @@ const Simulation = () => {
     }
 
     const updateselected = (row, column) => {
-        let copy = {...cellstate}
+        let copy = {...selectorState}
         copy.selectedIdx = getCellKey(row, column)
-        setcellstate((_) => copy)
+        setSelectorState((_) => copy)
     }
 
     const updaterunning = () => {
@@ -162,7 +165,7 @@ const Simulation = () => {
             updateselected={updateselected}
             updatealive={cellalivehandler}
             aliveCells={cellstate.aliveCells}
-            selectedIdx={cellstate.selectedIdx}
+            selectedIdx={selectorState.selectedIdx}
             updaterunning={updaterunning}
             clearWorld={clearWorld}
             updateLength={updateGridWidth}
