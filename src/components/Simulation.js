@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CellWorld from "./CellWorld";
 import WorldControls from "./WorldControls";
+import {getSelectorFunc} from "./CellSelectors";
 
 /**
  * Converts a row, column into a cell key in the format of "{row}-{column}"
@@ -47,8 +48,9 @@ const Simulation = () => {
 
     const [cellstate, setcellstate] = useState(blankCellState);
 
-    const [ selectorState, setSelectorState ] = useState({
+    const [selectorState, setSelectorState] = useState({
         selectedIdx: '0-0',
+        cellSelector: 1,
     })
 
     const [simulationState, setSimulationState] = useState({
@@ -177,7 +179,7 @@ const Simulation = () => {
             updateselected={updateselected}
             running={simulationState.running}
             aliveCells={cellstate.aliveCells}
-            selectedIdx={selectorState.selectedIdx}
+            selectedcells={getSelectorFunc(selectorState.cellSelector)(selectorState.selectedIdx)}
             colWidth={gridState.colWidth}
             colHeight={gridState.colHeight}
             gridheight={gridState.gridHeight}

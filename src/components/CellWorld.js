@@ -15,7 +15,7 @@ const CellWorld = (props) => {
             let cell = <Cell
                 running={props.running ? 1 : 0}
                 updateselected={props.updateselected}
-                isselected={cellKey === props.selectedIdx}
+                isselected={props.selectedcells.includes(cellKey)}
                 isalive={!!props.aliveCells[cellKey]}
                 key={cellKey}
                 cellKey={cellKey}
