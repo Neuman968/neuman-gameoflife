@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
 import classes from './Cell.module.css'
-import {getCellKey} from "./Simulation";
 
 class Cell extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        return prevProps.isalive !== this.props.isalive
+       return prevProps.isalive !== this.props.isalive
     }
 
     render = () => {
 
         const alivehandler = () => {
-            console.log(getCellKey(this.props.row, this.props.column))
             this.props.alivehandler(this.props.row, this.props.column)
         }
 
