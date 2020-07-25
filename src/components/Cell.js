@@ -10,7 +10,7 @@ class Cell extends Component {
     render = () => {
 
         const alivehandler = () => {
-            this.props.alivehandler(this.props.row, this.props.column)
+            this.props.alivehandler()
         }
 
         const cellClasses = [classes.Cell];

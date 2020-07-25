@@ -50,7 +50,7 @@ const Simulation = () => {
 
     const [selectorState, setSelectorState] = useState({
         selectedIdx: '0-0',
-        cellSelector: 1,
+        cellSelector: 2,
     })
 
     const [simulationState, setSimulationState] = useState({
@@ -63,6 +63,8 @@ const Simulation = () => {
         gridHeight: (squareSize + 2) * 50,
         gridWidth: (squareSize + 2) * 50,
     })
+
+    const selectedcells = getSelectorFunc(selectorState.cellSelector)(selectorState.selectedIdx)
 
     const updateGridWidth = (length) => setGridState((prev) => {
         return {
@@ -96,15 +98,16 @@ const Simulation = () => {
         })
     }
 
-    const cellalivehandler = (row, column) => {
+    const cellalivehandler = () => {
         let copy = {...cellstate}
-        const cellKey = getCellKey(row, column)
-        if (cellstate.aliveCells[cellKey]) {
-            delete copy.aliveCells[cellKey]
-        } else {
-            copy.aliveCells[cellKey] = 1;
-        }
-        copy.selectedIdx = cellKey;
+        selectedcells.map((cellKey) => {
+            if (cellstate.aliveCells[cellKey]) {
+                delete copy.aliveCells[cellKey]
+            } else {
+                copy.aliveCells[cellKey] = 1;
+            }
+            copy.selectedIdx = cellKey;
+        })
         setcellstate((_) => copy);
     }
 
@@ -179,7 +182,7 @@ const Simulation = () => {
             updateselected={updateselected}
             running={simulationState.running}
             aliveCells={cellstate.aliveCells}
-            selectedcells={getSelectorFunc(selectorState.cellSelector)(selectorState.selectedIdx)}
+            selectedcells={selectedcells}
             colWidth={gridState.colWidth}
             colHeight={gridState.colHeight}
             gridheight={gridState.gridHeight}
