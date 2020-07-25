@@ -109,7 +109,7 @@ const Simulation = () => {
     const clearWorld = () => {
         let copy = {...cellstate}
         copy.aliveCells = {};
-        copy.selectedIdx = getCellKey(0, 0)
+        updateselected(0, 0)
         setcellstate((_) => copy)
     }
 
@@ -149,7 +149,6 @@ const Simulation = () => {
                 }
 
                 setcellstate({
-                    selectedIdx: '0-0',
                     aliveCells: nextState
                 })
                 // Update to next generation...
@@ -178,7 +177,7 @@ const Simulation = () => {
             updateselected={updateselected}
             running={simulationState.running}
             aliveCells={cellstate.aliveCells}
-            selectedIdx={cellstate.selectedIdx}
+            selectedIdx={selectorState.selectedIdx}
             colWidth={gridState.colWidth}
             colHeight={gridState.colHeight}
             gridheight={gridState.gridHeight}
