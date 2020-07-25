@@ -114,15 +114,13 @@ const Simulation = () => {
                     }
                 }
 
-                setcellstate((prevstat) => {
-                    return {
-                        ...prevstat,
-                        aliveCells: nextState
-                    }
+                setcellstate({
+                    selectedIdx: '0-0',
+                    aliveCells: nextState
                 })
                 // Update to next generation...
             }
-        }, 100);
+        }, 10);
         return () => clearTimeout(timer);
     }, [cellstate.aliveCells, simulationState]);
 
