@@ -39,6 +39,11 @@ const AppDrawerContents = (props) => {
                 <MenuItem value={gliderSelector}>Glider</MenuItem>
                 <MenuItem value={gliderGunSelector}>Glider Gun</MenuItem>
             </Select>
+            <Button
+                onClick={() => props.updaterotation(props.rotation + 1)}
+            >
+                Rotate
+            </Button>
             <Typography>
                 Grid Length
             </Typography>

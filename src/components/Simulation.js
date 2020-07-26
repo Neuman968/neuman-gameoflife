@@ -50,6 +50,7 @@ const Simulation = () => {
 
     const [selectorState, setSelectorState] = useState({
         selectedIdx: '0-0',
+        rotationTimes: 0,
         cellSelector: barSelector,
     })
 
@@ -64,7 +65,15 @@ const Simulation = () => {
         gridWidth: (squareSize + 2) * 50,
     })
 
-    const selectedcells = rotateTimes(3, selectorState.selectedIdx, selectorState.cellSelector(selectorState.selectedIdx))
+    const selectedcells = rotateTimes(selectorState.rotationTimes,
+        selectorState.selectedIdx,
+        selectorState.cellSelector(selectorState.selectedIdx))
+
+    const updateRotation = (rotation) => {
+        let copy = {...selectorState}
+        copy.rotationTimes = rotation % 4
+        setSelectorState(copy)
+    }
 
     const updateCellSelector = (selector) => {
         let copy = {...selectorState}
@@ -185,6 +194,8 @@ const Simulation = () => {
             width={gridState.colWidth}
             updateWidth={updateGridHeight}
             updatecellselector={updateCellSelector}
+            updaterotation={updateRotation}
+            rotation={selectorState.rotationTimes}
         />
         <CellWorld
             updatealive={cellalivehandler}
