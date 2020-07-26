@@ -136,9 +136,11 @@ const Simulation = () => {
     }
 
     const updateselected = (row, column) => {
-        let copy = {...selectorState}
-        copy.selectedIdx = getCellKey(row, column)
-        setSelectorState((_) => copy)
+        if (!simulationState.running) {
+            let copy = {...selectorState}
+            copy.selectedIdx = getCellKey(row, column)
+            setSelectorState((_) => copy)
+        }
     }
 
     const updaterunning = () => {
