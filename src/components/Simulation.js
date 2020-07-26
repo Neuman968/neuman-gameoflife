@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CellWorld from "./CellWorld";
 import WorldControls from "./WorldControls";
-import {dotSelector} from "./CellSelectors";
+import {barSelector, dotSelector, rotate, rotateTimes} from "./CellSelectors";
 
 /**
  * Converts a row, column into a cell key in the format of "{row}-{column}"
@@ -50,7 +50,7 @@ const Simulation = () => {
 
     const [selectorState, setSelectorState] = useState({
         selectedIdx: '0-0',
-        cellSelector: dotSelector,
+        cellSelector: barSelector,
     })
 
     const [simulationState, setSimulationState] = useState({
@@ -64,7 +64,7 @@ const Simulation = () => {
         gridWidth: (squareSize + 2) * 50,
     })
 
-    const selectedcells = selectorState.cellSelector(selectorState.selectedIdx)
+    const selectedcells = rotateTimes(3, selectorState.selectedIdx, selectorState.cellSelector(selectorState.selectedIdx))
 
     const updateCellSelector = (selector) => {
         let copy = {...selectorState}
@@ -106,6 +106,8 @@ const Simulation = () => {
 
     const cellalivehandler = () => {
         let copy = {...cellstate}
+        console.log("Marking alive cells...")
+        console.log(selectedcells)
         selectedcells.map((cellKey) => {
             if (cellstate.aliveCells[cellKey]) {
                 delete copy.aliveCells[cellKey]

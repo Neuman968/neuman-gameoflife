@@ -28,6 +28,39 @@ export const gliderGunSelector = (selectedIdx) => {
 }
 
 /**
+ * Applies a 90 degree rotation numRotations times.
+ * @param numRotations
+ * @param selectedIdx
+ * @param cellKeyArr
+ * @returns {*}
+ */
+export const rotateTimes = (numRotations, selectedIdx, cellKeyArr) => {
+    let arr = cellKeyArr
+    for (let i =0; i < numRotations; i++) {
+        arr = rotate(selectedIdx, arr)
+    }
+    return arr
+}
+
+/**
+ * Take a cellKeyArray, ie ['0-0', '0-1'..] and applies a 90 degree clockwise
+ * rotation returning an array of transformed cell key coordinates.
+ * @param cellKeyArr
+ */
+export const rotate = (selectedIdx, cellKeyArr) => {
+    const [ selectedRow, selectedColum ] = rowColFromCelKey(selectedIdx)
+    return mapToCellKey(cellKeyArr.map((cellKey) => {
+        const [row, col] = rowColFromCelKey(cellKey)
+        // apply translation to origin
+        const [rowP, colP] = pointRotate(row - selectedRow, col - selectedColum)
+        // Return untranslated points after rotation is applied.
+        return [rowP + selectedRow, colP + selectedColum]
+    }))
+}
+
+export const pointRotate = (row, column) => [ column, row ]
+
+/**
  * Utility function for converting [[row, col]...] to ['row-col'] cell key
  * notation.
  * @param cellArrs
