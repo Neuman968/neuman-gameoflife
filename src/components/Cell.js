@@ -1,70 +1,47 @@
 import React, {Component} from 'react';
 import classes from './Cell.module.css'
 
-class Cell extends Component {
+const Cell = (props) => {
 
-    shouldComponentUpdate(prevProps, prevState, snapshot) {
-       return prevProps.isalive !== this.props.isalive
-        || (prevProps.isselected !== this.props.isselected)
-        || (prevProps.running !== this.props.running)
+    // shouldComponentUpdate(prevProps, prevState, snapshot) {
+    //    return prevProps.isalive !== props.isalive
+    //     || (prevProps.isselected !== props.isselected)
+    //     || (prevProps.running !== props.running)
+    // }
+
+    // render = () => {
+
+    const alivehandler = () => {
+        props.alivehandler()
     }
 
-    render = () => {
+    const cellClasses = [classes.Cell];
 
-        const alivehandler = () => {
-            this.props.alivehandler()
-        }
-
-        const cellClasses = [classes.Cell];
-
-        if (!this.props.running) {
-            cellClasses.push(classes.EditableCell)
-            if (this.props.isselected) {
-                cellClasses.push(classes.CellSelected)
-            }
-        }
-
-        cellClasses.push(this.props.isalive ? classes.CellAlive : classes.CellDead)
-
-        // console.log('Cell Row: ' + this.props.row + ' Column: ' + this.props.column + ' Rendering')
-        return <rect
-            onMouseEnter={() => this.props.updateselected(this.props.row, this.props.column)}
-            onClick={() => alivehandler()}
-            className={cellClasses.join(' ')}
-            height={this.props.height}
-            width={this.props.width}
-            x={this.props.x}
-            y={this.props.y}
-        />
+    if (!props.running && props.isselected) {
+        cellClasses.push(classes.CellSelected)
     }
+
+    cellClasses.push(props.isalive ? classes.CellAlive : classes.CellDead)
+
+    // console.log('Cell Row: ' + props.row + ' Column: ' + props.column + ' Rendering')
+    return <rect
+        onMouseEnter={() => props.updateselected(props.row, props.column)}
+        onClick={() => alivehandler()}
+        className={cellClasses.join(' ')}
+        height={props.height}
+        width={props.width}
+        x={props.x}
+        y={props.y}
+    />
 }
 
-// const Cell = (this.props) => {
-//
-//     const alivehandler = () => {
-//         this.props.alivehandler(this.props.row, this.props.column)
-//     }
-//
-//     const cellClasses = [classes.Cell];
-//
-//     if (!this.props.running) {
-//         cellClasses.push(classes.EditableCell)
-//         if (this.props.isselected) {
-//             cellClasses.push(classes.CellSelected)
-//         }
-//     }
-//
-//     cellClasses.push(this.props.isalive ? classes.CellAlive : classes.CellDead)
-//
-//     return <rect
-//         onMouseEnter={() => this.props.updateselected(this.props.row, this.props.column)}
-//         onClick={() => alivehandler()}
-//         className={cellClasses.join(' ')}
-//         height={this.props.height}
-//         width={this.props.width}
-//         x={this.props.x}
-//         y={this.props.y}
-//     />
-// };
-
-export default Cell;
+export default React.memo(
+    Cell,
+    (prevProps, nextProps) => prevProps.isalive === nextProps.isalive
+        && (prevProps.isselected === nextProps.isselected)
+        && (prevProps.running === nextProps.running)
+        && (prevProps.selector === nextProps.selector)
+    // not sure why selector prop needs to be here.. but if the selector state changes,
+    // then we need to trigger a re render.. in a class based component selector is not needed
+    // in shouldComponentUpdate...
+);

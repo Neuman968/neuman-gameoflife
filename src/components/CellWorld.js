@@ -26,6 +26,7 @@ const CellWorld = (props) => {
                 y={y}
                 height={props.squareSize}
                 width={props.squareSize}
+                selector={props.selector}
             />
             x += props.squareSize + 2;
             cellArray.push(cell);

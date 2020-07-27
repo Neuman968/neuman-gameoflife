@@ -2,8 +2,6 @@
     font-size: 0;
 }
 
-.EditableCell {}
-
 .CellDead {
     fill: rgba(75,76,73,0.96);
     stroke: rgba(75,76,73,0.96);

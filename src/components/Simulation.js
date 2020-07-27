@@ -210,6 +210,7 @@ const Simulation = () => {
             gridheight={gridState.gridHeight}
             gridwidth={gridState.gridWidth}
             squareSize={squareSize}
+            selector={selectorState.cellSelector}
         />
     </>);
 }
