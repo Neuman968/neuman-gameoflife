@@ -1,15 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import classes from './Cell.module.css'
 
 const Cell = (props) => {
-
-    // shouldComponentUpdate(prevProps, prevState, snapshot) {
-    //    return prevProps.isalive !== props.isalive
-    //     || (prevProps.isselected !== props.isselected)
-    //     || (prevProps.running !== props.running)
-    // }
-
-    // render = () => {
 
     const alivehandler = () => {
         props.alivehandler()

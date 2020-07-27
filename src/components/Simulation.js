@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CellWorld from "./CellWorld";
 import WorldControls from "./WorldControls";
-import {barSelector, dotSelector, rotate, rotateTimes} from "./CellSelectors";
+import {dotSelector, rotateTimes} from "./CellSelectors";
 
 /**
  * Converts a row, column into a cell key in the format of "{row}-{column}"
@@ -51,7 +51,7 @@ const Simulation = () => {
     const [selectorState, setSelectorState] = useState({
         selectedIdx: '0-0',
         rotationTimes: 0,
-        cellSelector: barSelector,
+        cellSelector: dotSelector,
     })
 
     const [simulationState, setSimulationState] = useState({
