@@ -3,8 +3,9 @@ import classes from './Cell.module.css'
 
 class Cell extends Component {
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    shouldComponentUpdate(prevProps, prevState, snapshot) {
        return prevProps.isalive !== this.props.isalive
+        || (prevProps.isselected !== this.props.isselected)
     }
 
     render = () => {
@@ -24,6 +25,7 @@ class Cell extends Component {
 
         cellClasses.push(this.props.isalive ? classes.CellAlive : classes.CellDead)
 
+        // console.log('Cell Row: ' + this.props.row + ' Column: ' + this.props.column + ' Rendering')
         return <rect
             onMouseEnter={() => this.props.updateselected(this.props.row, this.props.column)}
             onClick={() => alivehandler()}
