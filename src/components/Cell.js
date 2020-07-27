@@ -6,6 +6,7 @@ class Cell extends Component {
     shouldComponentUpdate(prevProps, prevState, snapshot) {
        return prevProps.isalive !== this.props.isalive
         || (prevProps.isselected !== this.props.isselected)
+        || (prevProps.running !== this.props.running)
     }
 
     render = () => {
