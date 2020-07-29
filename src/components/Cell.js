@@ -27,6 +27,9 @@ const Cell = (props) => {
     />
 }
 
+/**
+ * Handle componentShouldUpdate functional component equivalent using React.Memo
+ */
 export default React.memo(
     Cell,
     (prevProps, nextProps) => prevProps.isalive === nextProps.isalive
