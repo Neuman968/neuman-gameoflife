@@ -59,22 +59,19 @@ export const rotate = (selectedIdx, cellKeyArr) => {
     const [ selectedRow, selectedColum ] = rowColFromCelKey(selectedIdx)
     return mapToCellKey(cellKeyArr.map((cellKey) => {
         const [row, col] = rowColFromCelKey(cellKey)
-        // apply translation to origin
-        const [rowP, colP] = pointRotate(row - selectedRow, col - selectedColum)
-        // Return untranslated points after rotation is applied.
-        return [rowP + selectedRow, colP + selectedColum]
+        return pointRotate(selectedRow, selectedColum, row, col)
     }))
 }
 
 /**
- * Applies a 90 degree rotation around point (0,0) to the given point.
+ * Applies a 90 degree rotation around the selected row / column points. to the given point.
  * @param row
  * @param column
  * @returns {number[]}
  */
-export const pointRotate = (row, column) => {
-    return [(cos * (row)) + (sin * (column)),
-        (cos * (column)) - (sin * row)]
+export const pointRotate = (selectedRow, selectedCol, row, column) => {
+    return [(cos * (row - selectedRow)) + (sin * (column - selectedCol)) + selectedRow,
+        (cos * (column - selectedCol)) - (sin * (row - selectedRow)) + selectedCol]
 }
 
 /**
