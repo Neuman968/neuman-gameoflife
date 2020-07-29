@@ -211,6 +211,7 @@ const Simulation = () => {
             gridwidth={gridState.gridWidth}
             squareSize={squareSize}
             selector={selectorState.cellSelector}
+            rotation={selectorState.rotationTimes}
         />
     </>);
 }

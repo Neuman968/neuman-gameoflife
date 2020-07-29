@@ -33,7 +33,5 @@ export default React.memo(
         && (prevProps.isselected === nextProps.isselected)
         && (prevProps.running === nextProps.running)
         && (prevProps.selector === nextProps.selector)
-    // not sure why selector prop needs to be here.. but if the selector state changes,
-    // then we need to trigger a re render.. in a class based component selector is not needed
-    // in shouldComponentUpdate...
+        && (prevProps.rotation === nextProps.rotation)
 );
