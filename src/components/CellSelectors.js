@@ -1,5 +1,13 @@
 import {getCellKey, rowColFromCelKey} from "./Simulation";
 
+/**
+ * Rotation constants.
+ * @type {number}
+ */
+const radian = (Math.PI / 180) * 90;
+const cos = Math.cos(radian)
+const sin = Math.sin(radian)
+
 export const dotSelector = (selectedIdx) => [selectedIdx]
 
 export const barSelector = (selectedIdx) => {
@@ -58,7 +66,16 @@ export const rotate = (selectedIdx, cellKeyArr) => {
     }))
 }
 
-export const pointRotate = (row, column) => [ column, row ]
+/**
+ * Applies a 90 degree rotation around point (0,0) to the given point.
+ * @param row
+ * @param column
+ * @returns {number[]}
+ */
+export const pointRotate = (row, column) => {
+    return [(cos * (row)) + (sin * (column)),
+        (cos * (column)) - (sin * row)]
+}
 
 /**
  * Utility function for converting [[row, col]...] to ['row-col'] cell key
