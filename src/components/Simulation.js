@@ -9,7 +9,7 @@ import {dotSelector, rotateTimes} from "./CellSelectors";
  * @param column
  * @returns {string}
  */
-export const getCellKey = (row, column) => row + '-' + column;
+export const getCellKey = (row, column) => row + ':' + column;
 
 /**
  * Converts a cell get in the format of "{row}-{column}" into an array of
@@ -17,7 +17,7 @@ export const getCellKey = (row, column) => row + '-' + column;
  * @param key
  * @returns {number[]}
  */
-export const rowColFromCelKey = (key) => key.split('-')
+export const rowColFromCelKey = (key) => key.split(':')
     .map((val) => parseInt(val));
 
 /**
@@ -49,7 +49,7 @@ const Simulation = () => {
     const [cellstate, setcellstate] = useState(blankCellState);
 
     const [selectorState, setSelectorState] = useState({
-        selectedIdx: '0-0',
+        selectedIdx: '0:0',
         rotationTimes: 0,
         cellSelector: dotSelector,
     })
@@ -115,9 +115,7 @@ const Simulation = () => {
 
     const cellalivehandler = () => {
         let copy = {...cellstate}
-        console.log("Marking alive cells...")
-        console.log(selectedcells)
-        selectedcells.map((cellKey) => {
+        selectedcells.forEach((cellKey) => {
             if (cellstate.aliveCells[cellKey]) {
                 delete copy.aliveCells[cellKey]
             } else {
@@ -198,6 +196,8 @@ const Simulation = () => {
             updatecellselector={updateCellSelector}
             updaterotation={updateRotation}
             rotation={selectorState.rotationTimes}
+            // todo remove debug...
+            selectedcells={selectedcells}
         />
         <CellWorld
             updatealive={cellalivehandler}

@@ -44,22 +44,24 @@ export const gliderGunSelector = (selectedIdx) => {
  */
 export const rotateTimes = (numRotations, selectedIdx, cellKeyArr) => {
     let arr = cellKeyArr
-    for (let i =0; i < numRotations; i++) {
+    for (let i = 0; i < numRotations; i++) {
         arr = rotate(selectedIdx, arr)
     }
     return arr
 }
 
 /**
- * Take a cellKeyArray, ie ['0-0', '0-1'..] and applies a 90 degree clockwise
+ * Take a cellKeyArray, ie ['0:0', '0:1'..] and applies a 90 degree clockwise
  * rotation returning an array of transformed cell key coordinates.
  * @param cellKeyArr
  */
 export const rotate = (selectedIdx, cellKeyArr) => {
-    const [ selectedRow, selectedColum ] = rowColFromCelKey(selectedIdx)
+    const [selectedRow, selectedColumn] = rowColFromCelKey(selectedIdx)
     return mapToCellKey(cellKeyArr.map((cellKey) => {
         const [row, col] = rowColFromCelKey(cellKey)
-        return pointRotate(selectedRow, selectedColum, row, col)
+        // apply translation to origin
+        return pointRotate(selectedRow, selectedColumn, row, col)
+
     }))
 }
 
@@ -70,12 +72,12 @@ export const rotate = (selectedIdx, cellKeyArr) => {
  * @returns {number[]}
  */
 export const pointRotate = (selectedRow, selectedCol, row, column) => {
-    return [(cos * (row - selectedRow)) + (sin * (column - selectedCol)) + selectedRow,
-        (cos * (column - selectedCol)) - (sin * (row - selectedRow)) + selectedCol]
+    return [Math.floor(parseFloat((cos * (row - selectedRow)) + (sin * (column - selectedCol)) + selectedRow)),
+        (Math.floor(parseFloat(cos * (column - selectedCol)) - (sin * (row - selectedRow)) + selectedCol))]
 }
 
 /**
- * Utility function for converting [[row, col]...] to ['row-col'] cell key
+ * Utility function for converting [[row, col]...] to ['row:col'] cell key
  * notation.
  * @param cellArrs
  * @returns {*}
