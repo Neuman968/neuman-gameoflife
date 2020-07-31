@@ -52,6 +52,10 @@ const WorldControls = (props) => {
                 e.preventDefault()
                 props.updaterotation(props.rotation + 1)
                 break;
+            case 'KeyS':
+                e.preventDefault()
+                props.updaterunning()
+                break;
             case  " ":
             case "Space":
             case 'Enter':
