@@ -3,9 +3,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import Slider from '@material-ui/core/Slider';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import {barSelector, dotSelector, gliderGunSelector, gliderSelector} from "./CellSelectors";
 
 const useStyles = makeStyles({
     root: {
