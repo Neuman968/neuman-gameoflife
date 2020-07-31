@@ -153,11 +153,11 @@ const Simulation = () => {
         }
     })
 
-    const updateGridHeight = (width) => setGridState((prev) => {
+    const updateGridHeight = (height) => setGridState((prev) => {
         return {
             ...prev,
-            gridHeight: (squareSize + 2) * width,
-            colHeight: width
+            gridHeight: (squareSize + 2) * height,
+            colHeight: height
         }
     })
 
@@ -260,8 +260,6 @@ const Simulation = () => {
             updatecellselector={updateCellSelector}
             updaterotation={updateRotation}
             rotation={selectorState.rotationTimes}
-            // todo remove debug...
-            selectedcells={selectedcells}
         />
         <CellWorld
             updatealive={cellalivehandler}
