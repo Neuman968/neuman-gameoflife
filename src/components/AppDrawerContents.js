@@ -28,23 +28,6 @@ const AppDrawerContents = (props) => {
     return (
         <div className={classes.root}>
             <Typography>
-                Cell Selector
-            </Typography>
-            <Select
-                value={dotSelector}
-                onChange={(event) => props.updatecellselector(event.target.value)}
-            >
-                <MenuItem value={dotSelector}>Single Square</MenuItem>
-                <MenuItem value={barSelector}>Bar</MenuItem>
-                <MenuItem value={gliderSelector}>Glider</MenuItem>
-                <MenuItem value={gliderGunSelector}>Glider Gun</MenuItem>
-            </Select>
-            <Button
-                onClick={() => props.updaterotation(props.rotation + 1)}
-            >
-                Rotate
-            </Button>
-            <Typography>
                 Grid Length
             </Typography>
             <Slider

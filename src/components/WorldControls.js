@@ -8,6 +8,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from "@material-ui/core/Button";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import AppDrawerContents from "./AppDrawerContents";
+import Select from "@material-ui/core/Select";
+import {barSelector, dotSelector, gliderGunSelector, gliderSelector} from "./CellSelectors";
+import MenuItem from "@material-ui/core/MenuItem";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -101,7 +104,6 @@ const WorldControls = (props) => {
                         >
                             <MenuIcon/>
                         </IconButton>
-
                         <Button
                             onClick={props.updaterunning}
                             variant="contained"
@@ -109,6 +111,20 @@ const WorldControls = (props) => {
                         >
                             {props.running ? <>Stop</> : <>Start</>}
                         </Button>
+                        <Button
+                            onClick={() => props.updaterotation(props.rotation + 1)}
+                        >
+                            Rotate
+                        </Button>
+                        <Select
+                            value={props.cellselector}
+                            onChange={(event) => props.updatecellselector(event.target.value)}
+                        >
+                            <MenuItem value={dotSelector}>Single Point</MenuItem>
+                            <MenuItem value={barSelector}>Bar</MenuItem>
+                            <MenuItem value={gliderSelector}>Glider</MenuItem>
+                            <MenuItem value={gliderGunSelector}>Glider Gun</MenuItem>
+                        </Select>
                         <div
                             className={classes.title}
                         >

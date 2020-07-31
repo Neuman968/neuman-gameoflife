@@ -251,6 +251,7 @@ const Simulation = () => {
             updatealive={cellalivehandler}
             aliveCells={cellstate.aliveCells}
             selectedIdx={selectorState.selectedIdx}
+            cellselector={selectorState.cellSelector}
             updaterunning={updaterunning}
             clearWorld={clearWorld}
             updateLength={updateGridWidth}
