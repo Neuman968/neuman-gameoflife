@@ -1,7 +1,19 @@
 import React, {useEffect, useState} from "react";
 import CellWorld from "./CellWorld";
 import WorldControls from "./WorldControls";
-import {dotSelector, rotateTimes} from "./CellSelectors";
+import {dotSelector} from "./CellSelectors";
+
+
+const squareSize = 10;
+
+/**
+ * Rotation constants.
+ * @type {number}
+ */
+const radian = (Math.PI / 180) * 90;
+const cos = Math.cos(radian)
+const sin = Math.sin(radian)
+
 
 /**
  * Converts a row, column into a cell key in the format of "{row}-{column}"
@@ -38,7 +50,59 @@ export const getAliveNeighbors = (row, col, isAliveFunc) => getKeyNeighbors(row,
     return isAliveFunc(getCellKey(row, column)) ? acc + 1 : acc
 }, 0)
 
-const squareSize = 10;
+
+/**
+ * Applies a 90 degree rotation numRotations times.
+ * @param numRotations
+ * @param selectedIdx
+ * @param cellKeyArr
+ * @returns {*}
+ */
+export const rotateTimes = (numRotations, selectedIdx, cellKeyArr) => {
+    let arr = cellKeyArr
+    for (let i = 0; i < numRotations; i++) {
+        arr = rotate(selectedIdx, arr)
+    }
+    return arr
+}
+
+/**
+ * Take a cellKeyArray, ie ['0:0', '0:1'..] and applies a 90 degree clockwise
+ * rotation returning an array of transformed cell key coordinates.
+ * @param cellKeyArr
+ */
+export const rotate = (selectedIdx, cellKeyArr) => {
+    const [selectedRow, selectedColumn] = rowColFromCelKey(selectedIdx)
+    return mapToCellKey(cellKeyArr.map((cellKey) => {
+        const [row, col] = rowColFromCelKey(cellKey)
+        // apply translation to origin
+        return pointRotate(selectedRow, selectedColumn, row, col)
+
+    }))
+}
+
+/**
+ * Utility function for converting [[row, col]...] to ['row:col'] cell key
+ * notation.
+ * @param cellArrs
+ * @returns {*}
+ */
+export const mapToCellKey = cellArrs => cellArrs.map((arr) => {
+    const [cellRow, cellCol] = arr
+    return getCellKey(cellRow, cellCol)
+})
+
+
+/**
+ * Applies a 90 degree rotation around the selected row / column points. to the given point.
+ * @param row
+ * @param column
+ * @returns {number[]}
+ */
+export const pointRotate = (selectedRow, selectedCol, row, column) => {
+    return [Math.floor(parseFloat((cos * (row - selectedRow)) + (sin * (column - selectedCol)) + selectedRow)),
+        (Math.floor(parseFloat(cos * (column - selectedCol)) - (sin * (row - selectedRow)) + selectedCol))]
+}
 
 const blankCellState = {
     aliveCells: {},
