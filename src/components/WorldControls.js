@@ -11,7 +11,10 @@ import AppDrawerContents from "./AppDrawerContents";
 import Select from "@material-ui/core/Select";
 import {barSelector, dotSelector, gliderGunSelector, gliderSelector} from "./CellSelectors";
 import MenuItem from "@material-ui/core/MenuItem";
-
+import SvgIcon from "@material-ui/core/SvgIcon";
+import SvgGlider from "../assets/icon/SvgGlider";
+import SvgBar from "../assets/icon/SvgBar";
+import SvgSinglePoint from "../assets/icon/SvgSinglePoint";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -120,9 +123,9 @@ const WorldControls = (props) => {
                             value={props.cellselector}
                             onChange={(event) => props.updatecellselector(event.target.value)}
                         >
-                            <MenuItem value={dotSelector}>Single Point</MenuItem>
-                            <MenuItem value={barSelector}>Bar</MenuItem>
-                            <MenuItem value={gliderSelector}>Glider</MenuItem>
+                            <MenuItem value={dotSelector}>Single Point<SvgIcon component={SvgSinglePoint}/></MenuItem>
+                            <MenuItem value={barSelector}>Bar<SvgIcon component={SvgBar}/></MenuItem>
+                            <MenuItem value={gliderSelector}>Glider <SvgIcon component={SvgGlider}/></MenuItem>
                             <MenuItem value={gliderGunSelector}>Glider Gun</MenuItem>
                         </Select>
                         <div
