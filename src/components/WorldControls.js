@@ -9,7 +9,16 @@ import Button from "@material-ui/core/Button";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import AppDrawerContents from "./AppDrawerContents";
 import Select from "@material-ui/core/Select";
-import {barSelector, dotSelector, gliderGunSelector, gliderSelector} from "./CellSelectors";
+import {
+    acornSelector,
+    barSelector,
+    boatSelector,
+    dotSelector, fPentominoSelector,
+    gliderGunSelector,
+    gliderSelector,
+    lightWeightSpaceshipSelector,
+    toadSelector
+} from "./CellSelectors";
 import MenuItem from "@material-ui/core/MenuItem";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import SvgGlider from "../assets/icon/SvgGlider";
@@ -127,11 +136,14 @@ const WorldControls = (props) => {
                             <MenuItem value={barSelector}>Bar<SvgIcon component={SvgBar}/></MenuItem>
                             <MenuItem value={gliderSelector}>Glider <SvgIcon component={SvgGlider}/></MenuItem>
                             <MenuItem value={gliderGunSelector}>Glider Gun</MenuItem>
+                            <MenuItem value={toadSelector}>Toad</MenuItem>
+                            <MenuItem value={lightWeightSpaceshipSelector}>Light Weight Spaceship</MenuItem>
+                            <MenuItem value={acornSelector}>Acorn</MenuItem>
+                            <MenuItem value={fPentominoSelector}>F-Pentomino</MenuItem>
                         </Select>
                         <div
                             className={classes.title}
                         >
-
                         </div>
                         <Button
                             onClick={props.clearWorld}
