@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import AppDrawerContents from "./AppDrawerContents";
 import CellSelectorMenu from "./CellSelectorMenu";
+import RotateRightIcon from '@material-ui/icons/RotateRight';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
     },
     menuButton: {
         marginRight: theme.spacing(2),
+    },
+    menuItem: {
+      marginRight: theme.spacing(8),
     },
     title: {
         flexGrow: 1,
@@ -94,7 +98,7 @@ const WorldControls = (props) => {
                 <AppBar position="static">
                     <Toolbar variant="dense">
                         <IconButton edge="start"
-                                    className={classes.menuButton}
+                                    className={classes.menuItem}
                                     color="inherit"
                                     aria-label="menu"
                                     onClick={toggleDrawer(true)}
@@ -102,6 +106,7 @@ const WorldControls = (props) => {
                             <MenuIcon/>
                         </IconButton>
                         <Button
+                            className={classes.menuItem}
                             onClick={props.updaterunning}
                             variant="contained"
                             color={props.running ? "secondary" : "default"}
@@ -109,19 +114,20 @@ const WorldControls = (props) => {
                             {props.running ? <>Stop</> : <>Start</>}
                         </Button>
                         <CellSelectorMenu
+                            className={classes.menuItem}
                             value={props.cellselector}
                             onChange={(event) => props.updatecellselector(event.target.value)}
                         />
                         <Button
+                            className={classes.menuItem}
                             onClick={() => props.updaterotation(props.rotation + 1)}
                         >
                             Rotate
+                            <RotateRightIcon/>
                         </Button>
-                        <div
-                            className={classes.title}
-                        >
-                        </div>
+                        <div className={classes.title}/>
                         <Button
+                            className={classes.menuItem}
                             onClick={props.clearWorld}
                         >
                             Clear
