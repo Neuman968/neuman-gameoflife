@@ -8,22 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from "@material-ui/core/Button";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import AppDrawerContents from "./AppDrawerContents";
-import Select from "@material-ui/core/Select";
-import {
-    acornSelector,
-    barSelector,
-    boatSelector,
-    dotSelector, fPentominoSelector,
-    gliderGunSelector,
-    gliderSelector,
-    lightWeightSpaceshipSelector,
-    toadSelector
-} from "./CellSelectors";
-import MenuItem from "@material-ui/core/MenuItem";
-import SvgIcon from "@material-ui/core/SvgIcon";
-import SvgGlider from "../assets/icon/SvgGlider";
-import SvgBar from "../assets/icon/SvgBar";
-import SvgSinglePoint from "../assets/icon/SvgSinglePoint";
+import CellSelectorMenu from "./CellSelectorMenu";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,9 +19,6 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
-    },
-    svgIcon: {
-        zoom: 0, // fixes some weird chromium svg zooming issue.
     }
 }));
 
@@ -126,24 +108,15 @@ const WorldControls = (props) => {
                         >
                             {props.running ? <>Stop</> : <>Start</>}
                         </Button>
+                        <CellSelectorMenu
+                            value={props.cellselector}
+                            onChange={(event) => props.updatecellselector(event.target.value)}
+                        />
                         <Button
                             onClick={() => props.updaterotation(props.rotation + 1)}
                         >
                             Rotate
                         </Button>
-                        <Select
-                            value={props.cellselector}
-                            onChange={(event) => props.updatecellselector(event.target.value)}
-                        >
-                            <MenuItem value={dotSelector}>Single Point<SvgIcon className={classes.svgIcon} component={SvgSinglePoint}/></MenuItem>
-                            <MenuItem value={barSelector}>Bar<SvgIcon component={SvgBar}/></MenuItem>
-                            <MenuItem value={gliderSelector}>Glider <SvgIcon component={SvgGlider}/></MenuItem>
-                            <MenuItem value={gliderGunSelector}>Glider Gun</MenuItem>
-                            <MenuItem value={toadSelector}>Toad</MenuItem>
-                            <MenuItem value={lightWeightSpaceshipSelector}>Light Weight Spaceship</MenuItem>
-                            <MenuItem value={acornSelector}>Acorn</MenuItem>
-                            <MenuItem value={fPentominoSelector}>F-Pentomino</MenuItem>
-                        </Select>
                         <div
                             className={classes.title}
                         >
