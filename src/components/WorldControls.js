@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+    },
+    svgIcon: {
+        zoom: 0, // fixes some weird chromium svg zooming issue.
     }
 }));
 
@@ -132,7 +135,7 @@ const WorldControls = (props) => {
                             value={props.cellselector}
                             onChange={(event) => props.updatecellselector(event.target.value)}
                         >
-                            <MenuItem value={dotSelector}>Single Point<SvgIcon component={SvgSinglePoint}/></MenuItem>
+                            <MenuItem value={dotSelector}>Single Point<SvgIcon className={classes.svgIcon} component={SvgSinglePoint}/></MenuItem>
                             <MenuItem value={barSelector}>Bar<SvgIcon component={SvgBar}/></MenuItem>
                             <MenuItem value={gliderSelector}>Glider <SvgIcon component={SvgGlider}/></MenuItem>
                             <MenuItem value={gliderGunSelector}>Glider Gun</MenuItem>

@@ -4,9 +4,6 @@ function SvgGlider(props) {
     return (
         <svg
             height="1em"
-            style={{
-                zoom: 8,
-            }}
             cursor="default"
             width="1em"
             baseProfile="full"
