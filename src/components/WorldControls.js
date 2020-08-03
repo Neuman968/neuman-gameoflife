@@ -10,6 +10,7 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import AppDrawerContents from "./AppDrawerContents";
 import CellSelectorMenu from "./CellSelectorMenu";
 import RotateRightIcon from '@material-ui/icons/RotateRight';
+import HelpIcon from '@material-ui/icons/Help';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -126,6 +127,10 @@ const WorldControls = (props) => {
                             <RotateRightIcon/>
                         </Button>
                         <div className={classes.title}/>
+                        <Button style={{ fontSize: "14px"}}>
+                            How to Play
+                            <HelpIcon/>
+                        </Button>
                         <Button
                             className={classes.menuItem}
                             onClick={props.clearWorld}
