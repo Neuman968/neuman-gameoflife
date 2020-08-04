@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Cell.module.css'
+import {Rect} from "react-konva";
 
 const Cell = (props) => {
 
@@ -15,15 +16,17 @@ const Cell = (props) => {
 
     cellClasses.push(props.isalive ? classes.CellAlive : classes.CellDead)
 
-    // console.log('Cell Row: ' + props.row + ' Column: ' + props.column + ' Rendering')
-    return <rect
+
+    return <Rect
         onMouseEnter={() => props.updateselected(props.row, props.column)}
         onClick={() => alivehandler()}
         className={cellClasses.join(' ')}
+        fill={props.isalive ? "rgba(250,3,3,0.96)" : "rgba(75,76,73,0.96)"}
         height={props.height}
         width={props.width}
         x={props.x}
         y={props.y}
+        stroke={props.isselected ? '#3DF5FF' : null}
     />
 }
 

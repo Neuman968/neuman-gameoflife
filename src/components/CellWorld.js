@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Cell from "./Cell";
 import {getCellKey} from "./Simulation";
+import {Layer, Stage} from "react-konva";
 
 const CellWorld = (props) => {
 
@@ -47,13 +48,11 @@ const CellWorld = (props) => {
             paddingTop: '2%'
         }}
     >
-        <svg
-            height={props.gridwidth}
-            width={props.gridheight}>
-            {
-                cellArray
-            }
-        </svg>
+        <Stage width={props.gridwidth} height={props.gridheight}>
+            <Layer>
+                {cellArray}
+            </Layer>
+        </Stage>
     </Grid>
 };
 
