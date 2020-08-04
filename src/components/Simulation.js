@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CellWorld from "./CellWorld";
 import WorldControls from "./WorldControls";
-import {dotSelector} from "./CellSelectors";
+import {acornSelector2, barSelector2, dotSelector, getSelectedGrid, gliderSelector2} from "./CellSelectors";
 
 
 const squareSize = 10;
@@ -131,7 +131,7 @@ const Simulation = () => {
 
     const selectedcells = rotateTimes(selectorState.rotationTimes,
         selectorState.selectedIdx,
-        selectorState.cellSelector(selectorState.selectedIdx))
+        getSelectedGrid(selectorState.selectedIdx, acornSelector2))
 
     const updateRotation = (rotation) => {
         let copy = {...selectorState}

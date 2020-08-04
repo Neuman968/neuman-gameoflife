@@ -6,6 +6,53 @@ export const barSelector = (selectedIdx) => selectorFunc(selectedIdx, (row, col)
     mapToCellKey([[row, col - 1], [row, col], [row, col + 1]])
 )
 
+export const barSelector2 = [
+    "#",
+    "#",
+    "#"
+]
+
+export const diagonalSelector = [
+    "*  ",
+    " # ",
+    "  #",
+]
+
+export const gliderSelector2 = [
+    "#  ",
+    " ##",
+    "## ",
+]
+
+export const acornSelector2 = [
+    " *     ",
+    "   #    ",
+    "##  ###",
+]
+
+export const getSelectedGrid = (selectedIdx, selectorArr) => {
+    let selectedRow = 0
+    let selectedIdxOf = 0
+    const [row, column] = rowColFromCelKey(selectedIdx)
+    selectorArr.forEach((val, idx) => {
+        if (val.includes("*")) {
+            selectedRow = idx
+            selectedIdxOf = val.indexOf("*")
+        }
+    })
+
+    return mapToCellKey(selectorArr.flatMap((val, idx) => {
+        const selectedRows = [];
+        for (let i = 0; i < val.length; i++) {
+            const str = val[i]
+            if (str === "#") {
+                selectedRows.push([row + idx - selectedRow, column + i - selectedIdxOf])
+            }
+        }
+        return selectedRows
+    }))
+}
+
 export const gliderSelector = (selectedIdx) => selectorFunc(selectedIdx, (row, col) =>
     mapToCellKey([[row - 1, col - 1], [row + 1, col - 1], [row, col + 1], [row + 1, col], [row, col]])
 )
