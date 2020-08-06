@@ -45,7 +45,7 @@ export const getSelectedGrid = (selectedIdx, selectorArr) => {
         const selectedRows = [];
         for (let i = 0; i < val.length; i++) {
             const str = val[i]
-            if (str === "#") {
+            if (str === "#" || str === "*") {
                 selectedRows.push([row + idx - selectedRow, column + i - selectedIdxOf])
             }
         }
