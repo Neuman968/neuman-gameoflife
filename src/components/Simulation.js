@@ -131,8 +131,8 @@ const Simulation = () => {
     const selectedcells = React.useMemo(() =>
             !simulationState.running ? rotateTimes(selectorState.rotationTimes,
                 selectorState.selectedIdx,
-                getSelectedGrid(selectorState.selectedIdx, acornSelector2)) : [],
-        [selectorState.selectedIdx])
+                getSelectedGrid(selectorState.selectedIdx, selectorState.cellSelector)) : [],
+        [selectorState.cellSelector, selectorState.rotationTimes, selectorState.selectedIdx, simulationState.running])
 
     const updateRotation = (rotation) => {
         let copy = {...selectorState}
