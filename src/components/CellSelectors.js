@@ -41,7 +41,7 @@ export const getSelectedGrid = (selectedIdx, selectorArr) => {
         }
     })
 
-    return mapToCellKey(selectorArr.flatMap((val, idx) => {
+    return selectorArr.flatMap((val, idx) => {
         const selectedRows = [];
         for (let i = 0; i < val.length; i++) {
             const str = val[i]
@@ -50,7 +50,7 @@ export const getSelectedGrid = (selectedIdx, selectorArr) => {
             }
         }
         return selectedRows
-    }))
+    })
 }
 
 export const gliderSelector = (selectedIdx) => selectorFunc(selectedIdx, (row, col) =>

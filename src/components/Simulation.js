@@ -63,7 +63,7 @@ export const rotateTimes = (numRotations, selectedIdx, cellKeyArr) => {
     for (let i = 0; i < numRotations; i++) {
         arr = rotate(selectedIdx, arr)
     }
-    return arr
+    return mapToCellKey(arr)
 }
 
 /**
@@ -73,12 +73,11 @@ export const rotateTimes = (numRotations, selectedIdx, cellKeyArr) => {
  */
 export const rotate = (selectedIdx, cellKeyArr) => {
     const [selectedRow, selectedColumn] = rowColFromCelKey(selectedIdx)
-    return mapToCellKey(cellKeyArr.map((cellKey) => {
-        const [row, col] = rowColFromCelKey(cellKey)
+    return cellKeyArr.map((cellArr) => {
+        const [row, col] = cellArr
         // apply translation to origin
         return pointRotate(selectedRow, selectedColumn, row, col)
-
-    }))
+    })
 }
 
 /**
