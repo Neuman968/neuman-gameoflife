@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CellWorld from "./CellWorld";
 import WorldControls from "./WorldControls";
-import {acornSelector2, barSelector2, dotSelector, getSelectedGrid, gliderSelector2} from "./CellSelectors";
+import {acornSelector2, dotSelector, getSelectedGrid} from "./CellSelectors";
 
 
 const squareSize = 10;
@@ -128,9 +128,10 @@ const Simulation = () => {
         gridWidth: (squareSize + 2) * 50,
     })
 
-    const selectedcells = React.useMemo(() => rotateTimes(selectorState.rotationTimes,
-        selectorState.selectedIdx,
-        getSelectedGrid(selectorState.selectedIdx, acornSelector2)),
+    const selectedcells = React.useMemo(() =>
+            !simulationState.running ? rotateTimes(selectorState.rotationTimes,
+                selectorState.selectedIdx,
+                getSelectedGrid(selectorState.selectedIdx, acornSelector2)) : [],
         [selectorState.selectedIdx])
 
     const updateRotation = (rotation) => {

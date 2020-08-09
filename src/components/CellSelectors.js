@@ -34,23 +34,26 @@ export const getSelectedGrid = (selectedIdx, selectorArr) => {
     let selectedRow = 0
     let selectedIdxOf = 0
     const [row, column] = rowColFromCelKey(selectedIdx)
-    selectorArr.forEach((val, idx) => {
-        if (val.includes("*")) {
-            selectedRow = idx
-            selectedIdxOf = val.indexOf("*")
-        }
-    })
 
-    return selectorArr.flatMap((val, idx) => {
-        const selectedRows = [];
+    for (let i = 0; i < selectorArr.length; i++) {
+        if (selectorArr[i].includes('*')) {
+            selectedRow = i
+            selectedIdxOf = selectorArr[i].indexOf('*')
+            break
+        }
+    }
+
+    const returnArr = [];
+    selectorArr.forEach((val, idx) => {
         for (let i = 0; i < val.length; i++) {
             const str = val[i]
             if (str === "#" || str === "*") {
-                selectedRows.push([row + idx - selectedRow, column + i - selectedIdxOf])
+                returnArr.push([row + idx - selectedRow, column + i - selectedIdxOf])
             }
         }
-        return selectedRows
+
     })
+    return returnArr
 }
 
 export const gliderSelector = (selectedIdx) => selectorFunc(selectedIdx, (row, col) =>
