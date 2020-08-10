@@ -2,28 +2,148 @@ import {rowColFromCelKey} from "./Simulation";
 
 export const dotSelector = [ "*" ]
 
-export const barSelector = [
+export const bar = [
     "#",
     "#",
     "#"
 ]
 
-export const diagonalSelector = [
+export const diagonal = [
     "*  ",
     " # ",
     "  #",
 ]
 
-export const gliderSelector = [
+export const glider = [
     "#  ",
     " ##",
     "## ",
 ]
 
-export const acornSelector = [
+export const gliderGun = [
+    "                        #           ",
+    "                      # #           ",
+    "            ##      ##            ##",
+    "           #   #    ##            ##",
+    "*#        #     #   ##              ",
+    "##        #   # ##    # #           ",
+    "          #     #       #           ",
+    "           #   #                    ",
+    "            ##                      ",
+]
+
+export const acorn = [
     " *     ",
     "   #    ",
     "##  ###",
+]
+
+export const beeHive = [
+    "",
+]
+
+export const pulsar = [
+    "  *##   ###  ",
+    "             ",
+    "#    # #    #",
+    "#    # #    #",
+    "#    # #    #",
+    "  ###   ###  ",
+    "             ",
+    "  ###   ###  ",
+    "#    # #    #",
+    "#    # #    #",
+    "#    # #    #",
+    "             ",
+    "  ###   ###  ",
+]
+
+export const rPentomino = [
+    " *#",
+    "## ",
+    " # ",
+]
+
+export const lightweightSpaceship = [
+    " *  #",
+    "#    ",
+    "#   #",
+    "#### ",
+]
+
+export const middleweightSpaceship = [
+    "   *  ",
+    " #   #",
+    "#     ",
+    "#    #",
+    "##### ",
+]
+
+export const heavyweightSpaceship = [
+    "   *#  ",
+    " #    #",
+    "#      ",
+    "#     #",
+    "###### ",
+]
+
+export const lightweightEmulator = [
+    "  *# #  # ##  ",
+    "  #        #  ",
+    "   ##    ##   ",
+    "###  ####  ###",
+    "#  #      #  #",
+    " ##        ## ",
+]
+
+export const copperHead = [
+    " *#  ## ",
+    "   ##   ",
+    "   ##   ",
+    "# #  # #",
+    "#      #",
+    "        ",
+    "#      #",
+    " ##  ## ",
+    "  ####  ",
+    "        ",
+    "   ##   ",
+    "   ##   ",
+]
+
+export const v25P3H1V01 = [
+    "       *# #     ",
+    "    ## # ## ### ",
+    " ####  ##      #",
+    "#    #   #   ## ",
+    " ##             ",
+]
+
+export const brain = [
+    " *##         ### ",
+    "# # ##     ## # #",
+    "# # #       # # #",
+    " # ## ## ## ## # ",
+    "     # # # #     ",
+    "   # # # # # #   ",
+    "  ## # # # # ##  ",
+    "  ###  # #  ###  ",
+    "  ##  #   #  ##  ",
+    " #    ## ##    # ",
+    " #             # ",
+]
+
+export const dart = [
+    "       *       ",
+    "      # #      ",
+    "     #   #     ",
+    "      ###      ",
+    "               ",
+    "    ##   ##    ",
+    "  #   # #   #  ",
+    " ##   # #   ## ",
+    "#     # #     #",
+    " # ## # # ## # "
 ]
 
 export const getSelectedGrid = (selectedIdx, selectorArr) => {
